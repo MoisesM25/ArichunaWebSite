@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Arichuna - Contacto</title>
+    <link rel="icon" href="img/ico.ico" type="image/x-icon">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.css" />
+
+    <script src="https://unpkg.com/phosphor-icons"></script>
+</head>
+<body class="bg-gray-50"> <div id="navbar-container"></div>
+
+    <section id="hero-contacto" class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Contacto</h1>
+        </div>
+    </section>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+            
+            <div class="text-gray-700 flex flex-col justify-center fade-section fade-left">
+                
+                <div>
+                    <h2 class="contact-section-title text-left mb-5">Ponte en Contacto</h2>
+                    <p class="mb-10 text-xl leading-relaxed text-gray-600" style="font-family: 'Montserrat', sans-serif;">
+                        Si tienes preguntas referente a nuestros productos, quieres más información o tienes una petición personal no dudes en contactarnos y decirnos tu solicitud.
+                    </p>
+
+                    <h3 class="text-3xl font-bold text-red-700 text-center mb-6" style="font-family: 'Fluffy', sans-serif;">Síguenos</h3>
+                    
+                    <div class="grid grid-cols-3 gap-4 md:gap-6">
+                        
+                        <a href="#" class="contact-social-card" aria-label="Nuestro Twitter">
+                            <img src="img/tt.png" alt="Twitter" class="contact-social-icon">
+                        </a>
+                        
+                        <a href="#" class="contact-social-card" aria-label="Nuestro Facebook" style="animation-delay: 0.2s;">
+                            <img src="img/fb.png" alt="Facebook" class="contact-social-icon">
+                        </a>
+                        
+                        <a href="#" class="contact-social-card" aria-label="Nuestro Instagram" style="animation-delay: 0.4s;">
+                            <img src="img/ig.png" alt="Instagram" class="contact-social-icon">
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="fade-section fade-from-right">
+                <form action="#" method="POST" class="space-y-5 bg-white p-6 md:p-8 rounded-2xl shadow-lg">
+                    
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nombre y apellido</label>
+                        <input type="text" id="name" name="name" class="form-input w-full" required>
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Correo electrónico</label>
+                        <input type="email" id="email" name="email" class="form-input w-full" required>
+                    </div>
+                    
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Teléfono (Opcional)</label>
+                        <input type="tel" id="phone" name="phone" class="form-input w-full">
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Mensaje general</label>
+                        <textarea id="message" name="message" rows="5" class="form-input w-full" required></textarea>
+                    </div>
+                    
+                    <div>
+                        <label for="file-upload" class="block text-sm font-medium text-gray-700 mb-1">Subir un archivo</label>
+                        <input type="file" id="file-upload" name="file-upload" class="form-input w-full file-input-style">
+                    </div>
+                    
+                    <div>
+                        <button type="submit" class="w-full py-3 px-4 bg-red-700 text-white font-semibold rounded-lg shadow-md hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-75 transition-colors mt-4">
+                            Enviar Mensaje
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+        </main> 
+    
+    <section id="info-band" class="py-16 md:py-20">
+        <div class="info-band-overlay"></div>
+        
+        <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-x-12 text-white">
+                
+                <div class="flex items-center justify-center md:justify-start fade-section fade-left">
+                    <img src="img/telefono.png" alt="Teléfono" class="h-16 w-16 mr-5 flex-shrink-0">
+                    <div class="text-left">
+                        <h3 class="text-2xl font-semibold mb-1">Teléfono</h3>
+                        <a href="tel:+584121234567" class="text-lg opacity-90 hover:opacity-100 transition-opacity">+58 (412) 123-4567</a>
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-center md:justify-start fade-section fade-left" style="animation-delay: 0.2s;">
+                    <img src="img/correo.png" alt="Correo" class="h-16 w-16 mr-5 flex-shrink-0">
+                    <div class="text-left">
+                        <h3 class="text-2xl font-semibold mb-1">Correo</h3>
+                        <a href="mailto:contacto@arichuna.com" class="text-lg opacity-90 hover:opacity-100 transition-opacity">contacto@arichuna.com</a>
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-center md:justify-start fade-section fade-left" style="animation-delay: 0.4s;">
+                    <img src="img/ubicacion.png" alt="Ubicación" class="h-16 w-16 mr-5 flex-shrink-0">
+                    <div class="text-left">
+                        <h3 class="text-2xl font-semibold mb-1">Ubicación</h3>
+                        <p class="text-lg opacity-90">Barquisimeto - Venezuela</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 fade-section fade-from-right">
+        <h2 class="contact-section-title text-center mb-12">Encuéntranos</h2>
+        
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8133.93092283703!2d-69.39934758107846!3d10.0639503356323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e87643d2a64b8ef%3A0x27c9d69694579f24!2sEmbutidos%20Arichuna!5e0!3m2!1ses-419!2sve!4v1762732212960!5m2!1ses-419!2sve" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <div id="footer-container"></div>
+    
+    <script src="js/main.js"></script>
+    <script src="js/components.js"></script>
+    
+</body>
+</html>

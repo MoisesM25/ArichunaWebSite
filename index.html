@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Arichuna - Inicio</title>
+<link rel="icon" href="img/ico.jpg" type="image/x-icon">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/main.css"/>
+<script src="https://unpkg.com/phosphor-icons"></script>
+</head>
+<body class="bg-gray-50"> 
+<div id="navbar-container"></div>
+
+<div id="carousel-container" class="relative overflow-hidden w-full px-0 group">
+    <div id="carousel-slides" class="flex transition-transform duration-700 ease-in-out">
+        <div class="min-w-full h-80 md:h-96 lg:h-[600px] relative slide-content is-active">
+            <img src="img/carrusel_1.jpg" alt="Carrusel Imagen 1" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/30 flex items-center justify-center text-fade-in">
+                <h2 class="text-white text-3xl md:text-5xl font-bold p-4 text-center">¡Bienvenido a Arichuna!</h2>
+            </div>
+        </div>
+        <div class="min-w-full h-80 md:h-96 lg:h-[600px] relative slide-content">
+            <img src="img/carrusel_2.jpg" alt="Carrusel Imagen 2" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/30 flex items-start justify-center p-8 md:p-16 text-fade-in">
+                <h2 class="text-white text-3xl md:text-5xl font-bold bg-red-600/80 p-4 rounded-lg">Recetas Exclusivas</h2>
+            </div>
+        </div>
+        <div class="min-w-full h-80 md:h-96 lg:h-[600px] relative slide-content">
+            <img src="img/carrusel_3.jpg" alt="Carrusel Imagen 3" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/30 flex items-end justify-end p-8 md:p-16 text-fade-in">
+                <h2 class="text-white text-xl md:text-3xl font-semibold bg-zinc-800/70 p-3 rounded-lg">Descubre Nuestros Productos Frescos</h2>
+            </div>
+        </div>
+    </div>
+    <button id="prev-button" class="absolute top-1/2 left-4 -translate-y-1/2 bg-white/50 hover:bg-white/80 p-2 rounded-full shadow-lg z-20 carousel-nav-btn"><i class="ph ph-caret-left text-2xl"></i></button>
+    <button id="next-button" class="absolute top-1/2 right-4 -translate-y-1/2 bg-white/50 hover:bg-white/80 p-2 rounded-full shadow-lg z-20 carousel-nav-btn"><i class="ph ph-caret-right text-2xl"></i></button>
+    <div id="carousel-indicators" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-3 z-20"></div>
+</div>
+
+<main id="page-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <section id="home-recetario" class="w-full bg-gray-50 py-16 md:py-20 flex flex-col items-center fade-section fade-up">
+        
+        <h2 class="text-4xl md:text-5xl font-bold mb-16 drop-shadow-sm flex flex-col items-center" style="font-family: 'Fluffy', sans-serif;">
+            <span>
+                <span class="text-black">Nuestro</span>
+                <span class="text-amber-500">Recetario</span> 
+            </span>
+            <span class="block w-48 h-1 bg-red-700 mt-2"></span>
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+            <article class="news-card">
+                <a href="recetario.html" class="news-card-link">
+                    <div class="news-image-container">
+                        <img src="img/receta-desayuno.png" alt="Receta de Desayuno" class="news-image">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">Desayunos</span>
+                        <h3 class="news-title">Sandwich con Jamon Arichuna</h3>
+                        <span class="news-read-more">Ver receta &rarr;</span>
+                    </div>
+                </a>
+            </article>
+            <article class="news-card" style="transition-delay: 0.2s;">
+                <a href="recetario.html" class="news-card-link">
+                    <div class="news-image-container">
+                        <img src="img/receta-almuerzo.jpg" alt="Receta de Almuerzo" class="news-image">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">Almuerzos</span>
+                        <h3 class="news-title">Pasta con Jamon de Pierna</h3>
+                        <span class="news-read-more">Ver receta &rarr;</span>
+                    </div>
+                </a>
+            </article>
+            <article class="news-card" style="transition-delay: 0.4s;">
+                <a href="recetario.html" class="news-card-link">
+                    <div class="news-image-container">
+                        <img src="img/receta-cena.png" alt="Receta de Cena" class="news-image">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">Cenas</span>
+                        <h3 class="news-title">Perros Calientes con Salchicha Viena</h3>
+                        <span class="news-read-more">Ver receta &rarr;</span>
+                    </div>
+                </a>
+            </article>
+        </div>
+    </section>
+
+    <section id="sobre-nosotros" class="relative py-0 fade-section fade-up">
+        <div class="flex flex-col md:flex-row min-h-[85vh] w-full"> 
+            <div class="md:w-1/2 relative flex items-center justify-center p-6" id="sobre-nosotros-izquierda">
+                <div id="sobre-nosotros-fondo" class="absolute inset-0 bg-cover bg-center" 
+                     style="background-image: url('../img/REDES-1.jpg');">
+                </div>
+                <img src="../img/logo_footer.png" alt="Logo de la Empresa" 
+                     id="logo-sobre-nosotros"
+                     class="relative z-10 max-w-xs sm:max-w-sm lg:max-w-md w-full opacity-90 drop-shadow-2xl logo-sobre-nosotros"/>
+            </div>
+            <div class="md:w-1/2 relative z-10 flex flex-col justify-center p-12 bg-amber-500">
+                <h2 class="text-5xl font-bold mb-10 text-white drop-shadow-[0_2px_3px_rgba(0,0,0,0.5)]" style="font-family: 'Fluffy', sans-serif;">
+                    Sobre Nosotros
+                </h2>
+                <div class="max-w-xl mx-auto text-lg leading-relaxed font-[Montserrat] text-gray-900 drop-shadow-sm"> 
+                    <p class="mb-4">
+                        Embutidos Arichuna es una linea unica y familiar que nació del amor por la tradición culinaria venezolana. Desde nuestros inicios, buscamos rescatar el sabor auténticos de nuestra tierra con la complementacion entre lo fresco y el buen sabor, garantizando calidad y pasión en cada producto.
+                    </p>
+                    <p class="mb-4">
+                        Nuestra dirección es poder brindar experiencias en cada entrega de nuestros productos y siempre innovar sin perder nuestras raíces. Reconocidos por ofrecer calidez y por desbordar el esfuerzo.
+                    </p>
+                    <p>
+                        nuestra presencia en el mercado lleva mas de <strong class="text-white">43 años</strong> con mas de <strong class="text-white">20 presentaciones</strong> de distintos embutidos. Arichuna representa esfuerzo, identidad y sabor venezolano. Cada creación cuenta una historia y cada cliente forma parte de ella.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="home-pilares" class="py-16 md:py-20 fade-section fade-up">
+        
+        <h2 class="text-4xl md:text-5xl font-bold mb-16 drop-shadow-sm flex flex-col items-center" style="font-family: 'Fluffy', sans-serif;">
+            <span>
+                <span class="text-black">Nuestros</span>
+                <span class="text-amber-500">Pilares</span>
+            </span>
+            <span class="block w-48 h-1 bg-red-700 mt-2"></span>
+        </h2>
+      
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="benefit-card text-center fade-section fade-left">
+                <i class="ph ph-timer text-5xl text-red-700 mb-6 inline-block"></i>
+                <h4 class="benefit-title">Historia</h4>
+                <p class="benefit-text">
+                    Somos una empresa familiar con más de 40 años de tradición y compromiso.
+                </p>
+            </div>
+            <div class="benefit-card text-center fade-section fade-left" style="transition-delay: 0.2s;">
+                <i class="ph ph-package text-5xl text-red-700 mb-6 inline-block"></i>
+                <h4 class="benefit-title">Variedad</h4>
+                <p class="benefit-text">
+                    Contamos con una amplia gama de más de 30 productos seleccionados.
+                </p>
+            </div>
+            <div class="benefit-card text-center fade-section fade-left" style="transition-delay: 0.4s;">
+                <i class="ph ph-check-circle text-5xl text-red-700 mb-6 inline-block"></i>
+                <h4 class="benefit-title">Calidad</h4>
+                <p class="benefit-text">
+                    Elaboramos cada uno de nuestros productos con la máxima dedicación.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="carrusel-productos" class="w-full py-16 flex flex-col items-center justify-center fade-section fade-left">
+        <div id="mini-carrusel-productos-wrapper" class="relative w-screen overflow-hidden flex flex-col items-center justify-center bg-cover bg-center" style="background-image: url('img/fondo-producto.jpg');">
+            <h2 class="text-4xl md:text-5xl font-bold mt-8 mb-10 text-red-700 drop-shadow-[0_2px_3px_rgba(0,0,0,0.5)]" style="font-family: 'Fluffy', sans-serif;">
+                Nuestros Productos
+            </h2>
+            <div class="product-carousel w-full relative max-w-none px-6">
+                <div class="product-carousel-bg absolute inset-0 -z-10 pointer-events-none"></div>
+                <div class="carousel-viewport relative w-full overflow-visible py-8">
+                    <div class="carousel-track relative flex items-center will-change-transform" id="product-cards-container">
+                    </div>
+                </div>
+                <div class="flex items-center justify-between mt-4 px-2 w-full">
+                    <button id="products-prev" class="prev-btn inline-flex items-center justify-center rounded-full">
+                        <i class="ph ph-caret-left text-xl"></i>
+                    </button>
+                    <div class="carousel-dots flex gap-2"></div>
+                    <button id="products-next" class="next-btn inline-flex items-center justify-center rounded-full">
+                        <i class="ph ph-caret-right text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="social-preview-section" class="bg-gray-50 py-16 mt-8">
+        
+        <h2 class="text-4xl md:text-5xl font-bold mb-16 drop-shadow-sm flex flex-col items-center fade-section fade-up" style="font-family: 'Fluffy', sans-serif;">
+            <span>
+                <span class="text-black">Visita Nuestras</span>
+                <span class="text-amber-500">Redes Sociales</span>
+            </span>
+            <span class="block w-64 h-1 bg-red-700 mt-2"></span>
+        </h2>
+
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="relative group cursor-pointer overflow-hidden rounded-2xl shadow-lg hover:shadow-[0_0_25px_rgba(185,28,28,0.55)] transition-all duration-500 h-[400px] bg-cover bg-center bg-[REDES-1] fade-section fade-up">
+                <div class="absolute inset-0 flex items-center justify-center transition-all duration-500 group-hover:opacity-0 group-hover:scale-110">
+                    <img src="img/ig.png" alt="Instagram" class="w-24 h-24 transition-transform duration-500 group-hover:scale-110 drop-shadow-md">
+                </div>
+                <div class="opacity-0 group-hover:opacity-100 transition-all duration-700 transform group-hover:scale-105 h-full overflow-hidden">
+                    <blockquote class="instagram-media w-full h-full" data-instgrm-permalink="https://www.instagram.com/reel/C7XlPZog16b/?utm_source=ig_web_copy_link" data-instgrm-version="14" style="background:#FFF; border:0; margin:1px auto; max-width:100%; height:100%; overflow:hidden;"></blockquote>
+                </div>
+            </div>
+            <div class="relative group cursor-pointer overflow-hidden rounded-2xl shadow-lg hover:shadow-[0_0_25px_rgba(185,28,28,0.55)] transition-all duration-500 h-[400px] bg-cover bg-center bg-[REDES-2] fade-section fade-up" style="transition-delay: 0.2s;">
+                <div class="absolute inset-0 flex items-center justify-center transition-all duration-500 group-hover:opacity-0 group-hover:scale-110 z-10">
+                    <img src="img/fb.png" alt="Facebook" class="w-24 h-24 transition-transform duration-500 group-hover:scale-110 drop-shadow-md">
+                </div>
+                <div class="opacity-0 group-hover:opacity-100 transition-all duration-700 transform group-hover:scale-105 h-full overflow-hidden">
+                    <div class="fb-post" data-href="https://www.facebook.com/photo/?fbid=1271519248323467&set=a.468041565337910&locale=es_LA" data-width="100%" data-show-text="true" style="height:100%; overflow:hidden;"></div>
+                </div>
+            </div>
+            <div class="relative group cursor-pointer overflow-hidden rounded-2xl shadow-lg hover:shadow-[0_0_25px_rgba(185,28,28,0.55)] transition-all duration-500 h-[400px] bg-cover bg-center bg-[REDES-3] fade-section fade-up" style="transition-delay: 0.4s;">
+                <div class="absolute inset-0 flex items-center justify-center transition-all duration-500 group-hover:opacity-0 group-hover:scale-110">
+                    <img src="img/tt.png" alt="TikTok" class="w-24 h-24 transition-transform duration-500 group-hover:scale-110 drop-shadow-md">
+                </div>
+                <iframe src="https://www.tiktok.com/embed/v2/7432844693223869701" class="tiktok-frame w-full h-full opacity-0 group-hover:opacity-100 transition-all duration-700 transform group-hover:scale-105 rounded-2xl pointer-events-none" allow="autoplay; encrypted-media; fullscreen; clipboard-write; picture-in-picture" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin" style="border:none;"></iframe>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<section id="home-cta" class="ventas-parallax-section fade-section">
+    <div class="ventas-parallax-overlay"></div>
+    <div class="relative z-10 max-w-4xl mx-auto px-4 text-center text-white">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6" style="font-family: 'Fluffy', sans-serif;">
+            ¿Quieres vender nuestros productos?
+        </h2>
+        <p class="text-xl md:text-2xl mb-10 leading-relaxed" style="font-family: 'Montserrat', sans-serif;">
+            Forma parte de nuestra red de distribuidores y socios comerciales. Lleva la calidad Arichuna a tus clientes.
+        </p>
+        <a href="ventas.html" class="ventas-button-alt">
+            Asociate
+        </a>
+    </div>
+</section>
+
+<div id="footer-container"></div>
+
+<script async src="https://www.instagram.com/embed.js"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v18.0"></script>
+<script async src="https://www.tiktok.com/embed.js"></script>
+
+<script src="js/main.js"></script>
+<script src="js/components.js"></script>
+</body></html>

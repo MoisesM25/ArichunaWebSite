@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Arichuna - Productos</title>
+  <link rel="icon" href="img/ico.ico" type="image/x-icon">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+
+  <script src="https://unpkg.com/phosphor-icons"></script>
+</head>
+<body class="bg-gray-50"> <div id="navbar-container"></div>
+
+  <section id="hero-productos" class="hero-section">
+      <div class="hero-content">
+          <h1 class="hero-title">Productos</h1>
+      </div>
+  </section>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      
+      <div class="max-w-4xl mx-auto text-center mb-16 md:mb-20 animate-on-scroll animate-from-left">
+          <h2 class="product-page-title">Calidad que se Disfruta</h2>
+          <p class="product-intro-text">
+              Explora nuestras categorias de productos, cada una elaborada con la tradición y el sabor que nos caracteriza. Desde los Jamones clasicos hasta nuestras innovaciones, aquí encontrarás la calidad Arichuna en cada presentación.
+          </p>
+      </div>
+      <div class="product-section-container">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-8">
+
+              <div class="lg:col-span-2">
+    
+    <h3 class="product-section-title animate-on-scroll animate-from-left">Categorias</h3>
+    
+    <div id="accordion-container" class="flex flex-col space-y-4 mb-8 animate-on-scroll animate-from-left" style="transition-delay: 0.2s;">
+        </div>
+
+                  
+                  <div id="family-product-grids" class="mt-12">
+                      </div>
+
+              </div>
+
+              <div class="lg:col-span-1 lg:border-l lg:pl-8 mt-12 lg:mt-0 animate-on-scroll animate-from-right">
+                  
+                  <div id="product-detail-view" class="sticky top-28"> 
+                      
+                      <div id="product-detail-placeholder" class="product-detail-content text-center text-gray-500">
+                          <img src="img/lupa.png" alt="Ver detalle" class="w-16 h-16 mx-auto mb-4 opacity-30">
+                          <h3 class="text-xl font-semibold">Ver Detalle</h3>
+                          <p class="mt-2 text-base">Selecciona un producto de la izquierda para ver su información aquí.</p>
+                      </div>
+
+                      </div>
+              </div>
+
+          </div>
+      </div>
+  </main>
+
+  <section id="ventas-final-cta" class="ventas-parallax-section">
+      <div class="productos-parallax-overlay"></div>
+      
+      <div class="relative z-10 max-w-4xl mx-auto px-4 text-center text-white animate-on-scroll animate-from-right">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6" style="font-family: 'Fluffy', sans-serif;">
+              ¿Inspirado para cocinar?
+          </h2>
+          <p class="text-xl md:text-2xl mb-10 leading-relaxed" style="font-family: 'Montserrat', sans-serif;">
+              Descubre qué recetas increíbles puedes preparar con nuestros productos. Saca el máximo sabor Arichuna.
+          </p>
+          <a href="recetario.html" class="ventas-button-alt">
+              Ir al Recetario
+          </a>
+      </div>
+  </section>
+
+
+    <div id="footer-container"></div>
+  
+  <script src="js/main.js"></script>
+  <script src="js/components.js"></script>
+  
+</body>
+</html>
