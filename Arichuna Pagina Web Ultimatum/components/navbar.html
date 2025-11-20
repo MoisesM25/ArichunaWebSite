@@ -1,0 +1,69 @@
+<header id="main-header" class="bg-custom-header-top shadow-sm sticky top-0 z-40">
+  <div id="header-top-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-center relative">
+
+    <!-- Socials top (hidden on small) -->
+    <div id="social-icons-top" class="hidden md:flex space-x-3 absolute right-4 lg:right-8 transition-all duration-300">
+      <a href="https://www.facebook.com/jamonarichunave" target="_blank"><img src="img/fb.png" alt="Facebook" class="w-8 h-8 object-cover"></a>
+      <a href="https://www.instagram.com/jamonarichuna" target="_blank"><img src="img/ig.png" alt="Instagram" class="w-8 h-8 object-cover"></a>
+      <a href="https://www.tiktok.com/@jamonarichuna" target="_blank"><img src="img/tt.png" alt="TikTok" class="w-8 h-8 object-cover"></a>
+    </div>
+
+    <!-- Logo central -->
+    <div class="w-full text-center">
+      <a href="#" class="inline-block">
+        <img id="main-logo-top" src="img/logo.png" alt="Logo Arichuna" class="logo-head">
+      </a>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+
+      <!-- Hamburguer (mobile) -->
+      <div id="hamburger-wrapper" class="lg:hidden">
+        <button id="menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-zinc-50 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-700" aria-expanded="false">
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="flex justify-between items-center space-x-4">
+        <!-- Compact logo (shown when scrolled) -->
+        <div id="scrolled-logo-container" class="scrolled-item-hidden flex-shrink-0">
+          <a href="#"><img src="img/logo.png" alt="Logo Arichuna" class="w-24 h-auto"></a>
+        </div>
+
+        <!-- Desktop menu -->
+        <div id="main-menu-desktop" class="hidden lg:flex lg:flex-grow lg:justify-center lg:space-x-12">
+          <a href="#" class="text-red-600 px-4 py-4 text-lg font-bold transition duration-300 transform shadow-sm hover:shadow-md hover:-translate-y-0.5">Inicio</a>
+          <a href="../nosotros.html" class="text-zinc-50 hover:text-red-600 px-4 py-4 text-lg font-bold transition duration-300 transform shadow-sm hover:shadow-md hover:-translate-y-0.5">Nosotros</a>
+          <a href="../productos.html" class="text-zinc-50 hover:text-red-600 px-4 py-4 text-lg font-bold transition duration-300 transform shadow-sm hover:shadow-md hover:-translate-y-0.5">Productos</a>
+          <a href="../recetario.html" class="text-zinc-50 hover:text-red-600 px-4 py-4 text-lg font-bold transition duration-300 transform shadow-sm hover:shadow-md hover:-translate-y-0.5">Recetario</a>
+          <a href="../contacto.html" class="text-zinc-50 hover:text-red-600 px-4 py-4 text-lg font-bold transition duration-300 transform shadow-sm hover:shadow-md hover:-translate-y-0.5">Contacto</a>
+          <a href="../ventas.html" class="text-zinc-50 hover:text-red-600 px-4 py-4 text-lg font-bold transition duration-300 transform shadow-sm hover:shadow-md hover:-translate-y-0.5">Ventas</a>
+        </div>
+
+        <!-- Compact socials (shown when scrolled) -->
+        <div id="scrolled-social-container" class="scrolled-item-hidden flex-shrink-0 flex space-x-4">
+          <a href="https://www.facebook.com/jamonarichunave" target="_blank"><img src="img/fb.png" alt="Facebook" class="w-8 h-8 object-cover"></a>
+          <a href="https://www.instagram.com/jamonarichuna" target="_blank"><img src="img/ig.png" alt="Instagram" class="w-8 h-8 object-cover"></a>
+          <a href="https://www.tiktok.com/@jamonarichuna" target="_blank"><img src="img/tt.png" alt="TikTok" class="w-8 h-8 object-cover"></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu (hidden by default, toggled by JS) -->
+    <div id="mobile-menu" class="hidden bg-white shadow-lg lg:hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-start">
+        <a href="../index.html" class="text-red-700 block px-3 py-2 rounded-md text-base font-medium">Inicio</a>
+        <a href="../nosotros.html" class="text-gray-900 hover:text-red-700 block px-3 py-2 rounded-md text-base font-medium">Nosotros</a>
+        <a href="../productos.html" class="text-gray-900 hover:text-red-700 block px-3 py-2 rounded-md text-base font-medium">Productos</a>
+        <a href="../recetario.html" class="text-gray-900 hover:text-red-700 block px-3 py-2 rounded-md text-base font-medium">Recetario</a>
+        <a href="../contacto.html" class="text-gray-900 hover:text-red-700 block px-3 py-2 rounded-md text-base font-medium">Contacto</a>
+        <a href="../ventas.html" class="text-gray-900 hover:text-red-700 block px-3 py-2 rounded-md text-base font-medium">Ventas</a>
+      </div>
+    </div>
+  </nav>
+</header>

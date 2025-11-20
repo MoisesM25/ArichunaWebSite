@@ -1,0 +1,81 @@
+<header id="main-header" class="bg-custom-header-top header-scrolled-state shadow-sm sticky top-0 z-40">
+    <nav id="main-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+
+            <div id="hamburger-wrapper" class="lg:hidden">
+                <button id="menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-zinc-50 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-700" aria-expanded="false">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="flex justify-between items-center space-x-4">
+                <div id="scrolled-logo-container" class="flex-shrink-0">
+                    <a href="../index.html"><img src="../img/logo.png" alt="Logo Arichuna" class="w-24 h-auto"></a>
+                </div>
+
+                <div id="main-menu-desktop" class="hidden lg:flex lg:flex-grow lg:justify-center lg:space-x-12">
+                    <a href="../index.html" class="nav-link text-zinc-50 hover:text-red-600 px-4 py-4 text-lg font-bold transition duration-300 transform shadow-sm hover:shadow-md hover:-translate-y-0.5" data-page="index.html">Inicio</a>
+                    <a href="../nosotros.html" class="nav-link text-zinc-50 hover:text-red-600 px-4 py-4 text-lg font-bold transition duration-300 transform shadow-sm hover:shadow-md hover:-translate-y-0.5" data-page="nosotros.html">Nosotros</a>
+                    <a href="../productos.html" class="nav-link text-zinc-50 hover:text-red-600 px-4 py-4 text-lg font-bold transition duration-300 transform shadow-sm hover:shadow-md hover:-translate-y-0.5" data-page="productos.html">Productos</a>
+                    <a href="../recetario.html" class="nav-link text-zinc-50 hover:text-red-600 px-4 py-4 text-lg font-bold transition duration-300 transform shadow-sm hover:shadow-md hover:-translate-y-0.5" data-page="recetario.html">Recetario</a>
+                    <a href="../contacto.html" class="nav-link text-zinc-50 hover:text-red-600 px-4 py-4 text-lg font-bold transition duration-300 transform shadow-sm hover:shadow-md hover:-translate-y-0.5" data-page="contacto.html">Contacto</a>
+                    <a href="../ventas.html" class="nav-link text-zinc-50 hover:text-red-600 px-4 py-4 text-lg font-bold transition duration-300 transform shadow-sm hover:shadow-md hover:-translate-y-0.5" data-page="ventas.html">Ventas</a>
+                </div>
+
+                <div id="scrolled-social-container" class="flex-shrink-0 flex space-x-4">
+                    <a href="https://www.facebook.com/jamonarichunave" target="_blank"><img src="../img/fb.png" alt="Facebook" class="w-8 h-8 object-cover"></a>
+                    <a href="https://www.instagram.com/jamonarichuna" target="_blank"><img src="../img/ig.png" alt="Instagram" class="w-8 h-8 object-cover"></a>
+                    <a href="https://www.tiktok.com/@jamonarichuna" target="_blank"><img src="../img/tt.png" alt="TikTok" class="w-8 h-8 object-cover"></a>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden bg-white shadow-lg lg:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-start">
+                <a href="../index.html" class="mobile-nav-link text-gray-900 hover:text-red-700 block px-3 py-2 rounded-md text-base font-medium" data-page="index.html">Inicio</a>
+                <a href="../nosotros.html" class="mobile-nav-link text-gray-900 hover:text-red-700 block px-3 py-2 rounded-md text-base font-medium" data-page="nosotros.html">Nosotros</a>
+                <a href="../productos.html" class="mobile-nav-link text-gray-900 hover:text-red-700 block px-3 py-2 rounded-md text-base font-medium" data-page="productos.html">Productos</a>
+                <a href="../recetario.html" class="mobile-nav-link text-gray-900 hover:text-red-700 block px-3 py-2 rounded-md text-base font-medium" data-page="recetario.html">Recetario</a>
+                <a href="../contacto.html" class="mobile-nav-link text-gray-900 hover:text-red-700 block px-3 py-2 rounded-md text-base font-medium" data-page="contacto.html">Contacto</a>
+                <a href="../ventas.html" class="mobile-nav-link text-gray-900 hover:text-red-700 block px-3 py-2 rounded-md text-base font-medium" data-page="ventas.html">Ventas</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<script>
+    // Ajuste de padding superior para páginas secundarias:
+    document.addEventListener('DOMContentLoaded', () => {
+        try {
+            // Solo aplica si el header no es parte del contenido principal de una landing
+            const header = document.getElementById('main-header');
+            if (header && header.classList.contains('sticky')) {
+                document.body.style.paddingTop = `${header.offsetHeight}px`;
+            }
+        } catch (e) { /* no fatal */ }
+
+        // Inicializar toggle del menú móvil (usa mismos IDs que en navbar principal)
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuButton && mobileMenu) {
+            menuButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !menuButton.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 1024) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
+    });
+</script>

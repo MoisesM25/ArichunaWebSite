@@ -1,0 +1,655 @@
+/* main.css - COMPLETO Y REESTRUCTURADO */
+
+/* 1. RESET / VARIABLES */
+html,body{background:#fff;overflow-x:clip}
+:root{
+--header-start-color:#e99c9c;--header-mid-color:rgb(223,84,84);--header-end-color:#ff0000;
+--compact-start-color:#fff;--compact-end-color:#fab32e;--navbar-border-color:#fac664;
+--navbar-border-thickness:3px;--line-width-initial:70%;--line-width-scrolled:100%;
+--header-total-height-scrolled:100px;--header-total-height-initial:60px;--main-padding-bottom:40px;
+}
+
+/* 2. TIPOGRAFÍA / LOGOS */
+#main-nav a,#mobile-menu a{font-family:'Montserrat',sans-serif!important;font-size:17px}
+@font-face{font-family:'Fluffy';src:url('../css/fuentes/BLACKJAR.TTF') format('truetype');font-display:swap}
+/* Títulos con 'Fluffy' ahora se controlan por clases específicas */
+.logo-head{max-width:220px;height:auto}
+#scrolled-logo-container img{max-width:96px;height:auto}
+
+/* 3. HEADER: sticky, scrolled state y linea */
+.bg-custom-header-top{background:url('../img/fondo_head.jpg') center/cover no-repeat;background-color:#fab32e;transition:background-color .3s}
+.header-scrolled-state{background-color:var(--compact-end-color)!important;background-image:none!important}
+#main-header{z-index:40;position:fixed;top:0;left:0;width:100%}body{transition:padding-top .3s}
+#header-top-content{max-height:130px;padding:12px 0;overflow:hidden;transition:max-height .3s,opacity .3s,padding .3s;will-change:max-height,opacity,padding}
+.header-scrolled-state #header-top-content{max-height:0!important;padding:0!important;opacity:0}
+#main-header::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);z-index:41;height:var(--navbar-border-thickness);background:linear-gradient(to right,transparent 0%,var(--navbar-border-color) 20%,var(--navbar-border-color) 80%,transparent 100%);width:var(--line-width-initial);transition:width .3s}
+.header-scrolled-state #main-header::after{width:var(--line-width-scrolled)!important}
+#carousel-container{margin-top:var(--header-total-height-initial);padding-top:0!important;transition:margin-top .3s}
+.header-scrolled-state + #carousel-container{margin-top:var(--header-total-height-scrolled)}
+.scrolled-item-hidden{opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s;pointer-events:none}
+.header-scrolled-state #scrolled-logo-container,.header-scrolled-state #scrolled-social-container{opacity:1;transform:translateY(0);pointer-events:auto}
+@media(max-width:1023px){#hamburger-wrapper{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transition:left .3s,transform .3s}}
+.header-scrolled-state #hamburger-wrapper{left:9rem;transform:translateY(-50%)}
+#main-logo-top{transition:transform .3s}#header-top-content a:hover #main-logo-top{transform:scale(1.05) rotate(2deg)}
+.header-scrolled-state #main-logo-top{transform:none!important}
+#social-icons-top a img,#scrolled-social-container a img{transition:transform .3s;will-change:transform}#social-icons-top a:hover img,#scrolled-social-container a:hover img{transform:scale(1.1)}
+
+/* 4. EFECTO LINEA EN LINKS (navbar) */
+#main-menu-desktop a{position:relative;overflow:hidden}
+#main-menu-desktop a::after{content:"";position:absolute;bottom:0;left:50%;width:0;height:3px;background:linear-gradient(to right,transparent,#f87171,transparent);transform:translateX(-50%);transition:width .4s ease-in-out,opacity .3s;opacity:0;border-radius:2px}
+#main-menu-desktop a:hover::after{width:85%;opacity:1;background:linear-gradient(to right,transparent,#ff2e2e,transparent)}
+.header-scrolled-state #main-menu-desktop a::after{background:linear-gradient(to right,transparent,#f87171,transparent)}
+
+/* 5. CARRUSEL: transiciones, texto y CURVA SUAVE */
+#carousel-container{position:relative;overflow:hidden;width:100%;border-bottom-left-radius:50% 50px;border-bottom-right-radius:50% 50px}
+#carousel-slides,.slide-content img{border-bottom-left-radius:inherit;border-bottom-right-radius:inherit}
+.carousel-nav-btn{opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
+#carousel-container:hover .carousel-nav-btn{opacity:1;pointer-events:auto}
+#carousel-container:hover #prev-button,#carousel-container:hover #next-button{transform:translateY(-50%) translateX(0)}
+.slide-content .text-fade-in{opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s}
+.slide-content.is-active .text-fade-in{opacity:1;transform:translateY(0)}
+#mobile-menu{transition:opacity .3s;opacity:0;pointer-events:none}#mobile-menu.active{opacity:1;pointer-events:auto}
+
+/* 6. HOME PAGE - SECCIONES */
+/* (Esta sección reemplaza los estilos antiguos de #recetario-descanso y #sobre-nosotros) */
+.home-section-title {
+    font-family: 'Fluffy', sans-serif;
+    font-size: 3.5rem; /* 56px */
+    font-weight: 700;
+    color: #c30000; /* Rojo Arichuna */
+}
+.home-body-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.125rem; /* 18px */
+    color: #4B5563; /* Gris medio */
+    line-height: 1.8;
+}
+#home-cta {
+    /* Fondo para el CTA final de la Home */
+    background-image: url('../img/fachada.jpg'); /* Reemplaza con una imagen de ventas/distribución */
+}
+@media (max-width: 768px) {
+    .home-section-title {
+        font-size: 2.75rem;
+    }
+}
+
+
+/* SOBRE NOSOTROS (Home) - MANTENIDO POR REQUERIMIENTO */
+#sobre-nosotros, #carrusel-productos {
+scroll-margin-top: 120px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center
+}
+/* HACK DE SANGRADO (Home) - MANTENIDO */
+#sobre-nosotros {
+position: relative;
+left: 50%;
+right: 50%;
+margin-left: -50vw;
+margin-right: -50vw;
+width: 100vw;
+min-height: 85vh;
+color: #fff;
+margin-top: 2rem;
+overflow: hidden;
+padding-left: 0;
+padding-right: 0;
+}
+#sobre-nosotros-fondo {
+z-index: 0;
+opacity: .8;
+filter: contrast(1.5) brightness(.39);
+border-radius: 0;
+transform: none;
+transform-origin: center;
+transition: all .5s
+}
+#sobre-nosotros h2, #sobre-nosotros p {
+position: relative;
+z-index: 2
+}
+#sobre-nosotros h2 {
+font-family: 'Fluffy', sans-serif
+}
+#carrusel-productos {
+margin-top: 4rem;
+min-height: 100vh
+}
+#carrusel-productos h2 {
+font-family: 'Fluffy', sans-serif
+}
+/* ANIMACIONES DEL LOGO (Home) - MANTENIDO */
+.logo-sobre-nosotros {
+opacity: 0;
+transform: translateY(-100px);
+transition: opacity 1s ease 1.2s, transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.2s;
+will-change: opacity, transform;
+}
+.logo-sobre-nosotros.animate-in {
+opacity: 1;
+transform: translateY(0);
+}
+@media(max-width: 768px) {
+#sobre-nosotros-fondo {
+transform: none;
+}
+#sobre-nosotros h2 {
+font-size: 2.3rem
+}
+#sobre-nosotros p {
+font-size: 1rem
+}
+}
+
+/* ANIMACIONES DE SECCIÓN (Global) */
+.fade-section {
+opacity: 0;
+transition: opacity 1.8s ease-out, transform 1.8s ease-out;
+will-change: opacity, transform;
+}
+.fade-up {
+transform: translateY(80px);
+}
+.fade-left {
+transform: translateX(-80px);
+}
+.fade-from-right {
+transform: translateX(80px);
+}
+.fade-section.visible {
+opacity: 1;
+transform: translate(0, 0);
+}
+
+/* 6C. OBSERVADOR DE ANIMACIÓN (Global) */
+.animate-on-scroll{opacity:0;transition:opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);will-change:opacity, transform}
+.animate-on-scroll.animate-from-left{transform:translateX(-100px)}
+.animate-on-scroll.animate-from-right{transform:translateX(100px)}
+.animate-on-scroll.is-visible{opacity:1;transform:translate(0, 0)}
+
+/* 7. MINI CARRUSEL DE PRODUCTOS 3D (AISLADO) */
+:root{--card-scale-side:.75;--card-translateY-side:-30px;--card-rotate-side:6deg;--card-gap-multiplier:.8;--card-gap-multiplier-far:1.3;--card-size-lg:380px;--card-size-sm:80vw;--card-scale-far:.5;--card-translateY-far:-50px;--card-rotate-far:10deg;--card-translateZ-far:-200px;--card-transition-speed:.6s;--card-transition-easing:cubic-bezier(.175,.885,.32,1.275);--arrow-vertical-position:50%}
+.product-carousel{font-family:'Montserrat',sans-serif;width:100%}
+.carousel-viewport{perspective:1800px;min-height:30rem}
+@media(min-width:768px){.carousel-viewport{min-height:34rem}}
+.product-carousel .carousel-track{width:100%;height:100%;transform-style:preserve-3d;position:relative;min-height:inherit}
+.product-carousel .product-card{--this-card-width:var(--card-size-sm);width:var(--this-card-width);background:transparent;border-radius:1rem;overflow:visible;transform-origin:center center;transition:all var(--card-transition-speed) var(--card-transition-easing);position:absolute;left:50%;top:0;backface-visibility:hidden;transform-style:flat}
+@media(min-width:1024px){.product-carousel .product-card{--this-card-width:var(--card-size-lg)}}
+.product-carousel .product-card.is-center{transform:translateX(-50%) scale(1) translateY(0) rotateY(0);box-shadow:none;z-index:50;opacity:1;filter:brightness(1);cursor:default}
+.product-carousel .product-card.is-prev{z-index:30;opacity:.8;transform:translateX(calc(-50% - var(--this-card-width)*var(--card-gap-multiplier))) scale(var(--card-scale-side)) translateY(var(--card-translateY-side)) rotateY(var(--card-rotate-side))}
+.product-carousel .product-card.is-next{z-index:30;opacity:.8;transform:translateX(calc(-50% + var(--this-card-width)*var(--card-gap-multiplier))) scale(var(--card-scale-side)) translateY(var(--card-translateY-side)) rotateY(calc(-1*var(--card-rotate-side)))}
+.product-carousel .product-card.is-prev-far{z-index:10;opacity:.3;transform:translateX(calc(-50% - var(--this-card-width)*var(--card-gap-multiplier-far))) scale(var(--card-scale-far)) translateY(var(--card-translateY-far)) rotateY(var(--card-rotate-far)) translateZ(var(--card-translateZ-far))}
+.product-carousel .product-card.is-next-far{z-index:10;opacity:.3;transform:translateX(calc(-50% + var(--this-card-width)*var(--card-gap-multiplier-far))) scale(var(--card-scale-far)) translateY(var(--card-translateY-far)) rotateY(calc(-1*var(--card-rotate-far))) translateZ(var(--card-translateZ-far))}
+.product-carousel .product-card:not(.is-center):not(.is-prev):not(.is-next):not(.is-prev-far):not(.is-next-far){opacity:0;pointer-events:none;z-index:0;transform:translateX(-50%) scale(.1) translateZ(-1500px)}
+.product-carousel .card-media{border-radius:1rem;overflow:hidden;background:transparent !important;transform-style:flat}
+.product-carousel .card-media img{object-fit:contain;transition:transform .52s cubic-bezier(.2,.9,.2,1);will-change:transform}
+.product-carousel .product-card.is-center:hover .card-media img{transform:scale(1.05)}
+.product-carousel .product-card:focus{outline:none;outline-offset:0}
+.product-carousel .view-product-button-wrapper{position:absolute;top:50%;left:50%;transform:translate(-50%, calc(-50% + 20px));opacity:0;pointer-events:none;transition:all .3s ease-out;z-index:60}
+.product-carousel .product-card.is-center:hover .view-product-button-wrapper{opacity:1;transform:translate(-50%, -50%);pointer-events:auto}
+.view-product-button{display:inline-flex;align-items:center;justify-content:center;padding:10px 20px;font-weight:bold;text-transform:uppercase;white-space:nowrap;border-radius:999px;box-shadow:0 4px 15px rgba(0,0,0,.2);backdrop-filter:blur(4px);background-color:#c30000;color:#e9a31f;transition:background-color .3s ease, transform .3s ease, color .3s ease;border:none}
+.view-product-button:hover{background-color:#e9a31f;color:#c30000;transform:scale(1.05)}
+.carousel-dots{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:100;display:flex}
+.carousel-dots button{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,.8);box-shadow:0 4px 10px rgba(0,0,0,.08);border:none;opacity:.5;transition:transform .2s,opacity .25s,background .2s}
+.carousel-dots button.active{transform:scale(1.35);opacity:1;background:#c30000}
+.prev-btn,.next-btn{width:60px;height:60px;border-radius:999px;box-shadow:0 4px 15px rgba(0,0,0,.2);backdrop-filter:blur(4px);z-index:100;position:absolute;top:var(--arrow-vertical-position);transform:translateY(-50%);background-color:#c30000;transition:background-color .3s ease,transform .3s ease}
+.prev-btn i,.next-btn i{font-size:2rem;color:#e9a31f;transition:color .3s ease}
+.prev-btn:hover,.next-btn:hover{background-color:#e9a31f;transform:translateY(-50%) scale(1.1)}
+.prev-btn:hover i,.next-btn:hover i{color:#c30000}
+.prev-btn{left:1rem}
+.next-btn{right:1rem}
+@media(min-width:768px){.prev-btn{left:2rem}.next-btn{right:2rem}}
+.product-carousel .carousel-track.dragging{cursor:grabbing;user-select:none}
+
+/* 8. EMBEDS */
+#social-preview-section iframe{border:none;transform:scale(1);transition:transform .5s ease}
+#social-preview-section .group:hover iframe{transform:scale(1.02)}
+.group iframe,.group blockquote{pointer-events:none;transition:opacity .3s ease}
+.group:hover iframe,.group:hover blockquote{pointer-events:auto;opacity:1}
+.tiktok-embed iframe{width:100%!important;height:100%!important;border-radius:1rem;object-fit:cover}
+.bg-\[REDES-1\] {background-image: url('../img/REDES-1.jpg');}
+.bg-\[REDES-2\] {background-image: url('../img/REDES-2.jpg');}
+.bg-\[REDES-3\] {background-image: url('../img/REDES-3.jpg');}
+
+/* 9. FOOTER */
+.site-footer{position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;width:100vw;padding:2.5rem 0 0;background:linear-gradient(90deg,#ff9800,#ffa726);color:#f8f8f8;z-index:10}
+.footer-content{display:flex;align-items:center;justify-content:space-evenly;flex-wrap:wrap;max-width:1200px;margin:0 auto;padding:0 4rem 2rem;min-height:100px}
+.footer-left{display:flex;flex-direction:column;align-items:flex-start;text-align:left;position:relative}
+.footer-logo{max-width:240px;height:auto;transition:transform .4s,filter .4s;cursor:pointer}
+.footer-logo:hover{transform:scale(1.05);filter:brightness(1.15)}
+.footer-quote-container{position:relative;width:370px;min-height:3em;overflow:visible}
+.footer-quote{position:absolute;top:0;left:0;font-style:italic;color:rgba(255,255,255,.95);font-size:1.15rem;white-space:normal;overflow:visible;height:auto;width:100%}
+.footer-quote-text{border-right:2px solid transparent}
+.footer-quote.is-typing .footer-quote-text{border-right-color:rgba(255,255,255,.8);animation:blink .6s step-end infinite}
+@keyframes blink{50%{border-color:transparent}}
+.footer-copy{text-align:center;color:rgba(255,255,255,.75);font-size:.9rem;margin-top:1rem;padding:1.2rem 0 1.5rem;border-top:1px solid rgba(255,255,255,.4)}
+.footer-info{display:flex;flex-direction:column;gap:1rem;justify-content:center;text-align:right}
+.footer-contact-item{display:flex;align-items:center;gap:.6rem;color:rgba(255,255,255,.95);text-decoration:none;font-size:1.1rem;transition:color .3s,transform .25s}
+.footer-contact-item strong{color:#fff}
+.footer-contact-item:hover{color:#fde68a;transform:translateX(4px)}
+.footer-icon{width:24px;height:24px;transition:transform .3s,filter .3s}
+.footer-contact-item:hover .footer-icon{transform:scale(1.2);filter:brightness(1.2)}
+@media(max-width:900px){.footer-content{flex-direction:column;align-items:center;text-align:center;gap:1.5rem}.footer-left,.footer-info{align-items:center;text-align:center}.footer-quote-container{width:100%;min-height:3em}.footer-logo{max-width:180px}}
+
+/* 10. PAGINA CONTACTO (REFINADA) */
+.contact-section-title{font-family:'Fluffy',sans-serif;font-size:3.5rem;font-weight:700;color:#c30000;line-height:1.2}
+@media (max-width: 768px){.contact-section-title{font-size:2.75rem}}
+.contact-social-card{display:flex;align-items:center;justify-content:center;background:#FFF;padding:1.5rem;border-radius:1rem;box-shadow:0 8px 20px rgba(0, 0, 0, 0.07);transition:transform 0.3s ease, box-shadow 0.3s ease}
+.contact-social-card:hover{transform:translateY(-8px);box-shadow:0 12px 25px rgba(0, 0, 0, 0.1)}
+.contact-social-icon{width:4rem;height:4rem}
+#hero-contacto{width:100%;height:450px;position:relative;overflow:hidden;background-image:url('../img/fachada.jpg');background-size:cover;background-position:center 30%;background-repeat:no-repeat;display:flex;align-items:center;justify-content:flex-start}
+#hero-contacto::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0, 0, 0, 0.60);z-index:1}
+.hero-content{position:relative;z-index:2;width:100%;text-align:left;padding-left:55%}
+.hero-title{font-size:4.5rem;font-weight:700;color:#fff;text-shadow:0 4px 6px rgba(0, 0, 0, 0.5);opacity:0;transform:translateY(20px);animation:fadeInTitle 1s ease-out 0.3s forwards}
+@keyframes fadeInTitle{to{opacity:1;transform:translateY(0)}}
+@media (max-width: 768px){#hero-contacto{height:450px;justify-content:center;background-position:center center}#hero-contacto .hero-content{width:90%;text-align:center;padding-left:0}#hero-contacto .hero-title{font-size:3rem}}
+.form-input{border:2px solid #D1D5DB;padding:0.75rem 1.25rem;font-size:1rem;line-height:1.5;color:#1F2937;background-color:#fff;width:100%;border-radius:1.5rem;transition:border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out}
+.form-input:focus{outline:none;border-color:#EF4444;box-shadow:0 0 0 3px rgba(239, 68, 68, 0.4)}
+.form-input[type="file"]{padding:0.65rem}
+.file-input-style::file-selector-button{font-weight:500;border:none;padding:0.25rem 0.75rem;border-radius:0.5rem;background-color:#F3F4F6;color:#374151;cursor:pointer;margin-right:0.75rem}
+/* 🔥 CAMBIO AQUÍ: Se asegura el nombre del archivo si es que tenía una extensión incorrecta antes */
+#info-band{position:relative;overflow:hidden;background-image:url('../img/REDES-2.jpg');background-attachment:fixed;background-position:center center;background-repeat:no-repeat;background-size:cover}
+.info-band-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0, 0, 0, 0.65);z-index:1}
+.map-container{position:relative;width:100%;aspect-ratio:16 / 9;border-radius:1.5rem;overflow:hidden;border:2px solid #EF4444;box-shadow:0 0 0 3px rgba(239, 68, 68, 0.4)}
+.map-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+
+/* 10. PAGINA PRODUCTOS (HERO) */
+#hero-productos{width:100%;height:450px;position:relative;overflow:hidden;background-image:url('../img/fachada.jpg');background-size:cover;background-position:center 30%;background-repeat:no-repeat;display:flex;align-items:center;justify-content:flex-start}
+#hero-productos::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0, 0, 0, 0.60);z-index:1}
+@media (max-width: 768px){#hero-productos{height:450px;justify-content:center;background-position:center center}#hero-productos .hero-content{width:90%;text-align:center;padding-left:0}#hero-productos .hero-title{font-size:3rem}}
+
+/* 11. SECCIÓN DE PRODUCTOS (ACORDEÓN SEPARADO Y LIMPIO) */
+
+/* Estilos de Texto Intro y Títulos */
+.product-page-title{font-family:'Fluffy',sans-serif;font-size:3.5rem;font-weight:700;color:#c30000;margin-bottom:2rem}
+.product-intro-text{font-family:'Montserrat',sans-serif;font-size:1.25rem;color:#4B5563;line-height:1.7}
+.product-section-title{font-family:'Fluffy',sans-serif;font-size:2.75rem;font-weight:700;color:#374151;margin-bottom:1.5rem}
+
+/* CONTENEDOR DE BLOQUE (Botón + Grid) */
+.family-block {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1rem; /* Espacio entre bloques de familia */
+}
+
+/* BOTÓN DE FAMILIA */
+.product-section-container .family-selector-btn {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem 1.25rem;
+    border: 2px solid #E5E7EB; 
+    border-radius: 1rem; 
+    background-color: #ffffff;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease;
+    width: 100%; 
+    position: relative;
+    z-index: 10;
+}
+
+.product-section-container .family-selector-btn img {
+    width: 3rem;
+    height: 3rem;
+    margin-right: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.product-section-container .family-selector-btn span {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #374151; 
+}
+
+.product-section-container .family-selector-btn:hover {
+    border-color: #EF4444; 
+    background-color: #FEF2F2; 
+    box-shadow: 0 4px 10px rgba(239, 68, 68, 0.1);
+}
+
+/* ESTADO ACTIVO (ABIERTO) */
+.product-section-container .family-selector-btn.active {
+    border-color: #EF4444; 
+    background-color: #FEF2F2; 
+    /* Mantenemos el borde redondeado completo */
+    border-radius: 1rem;
+    /* Añadimos separación con los productos de abajo */
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
+}
+
+/* CONTENEDOR DEL GRID (ACORDEÓN) */
+.product-section-container .product-grid-container {
+    /* Estado inicial: oculto visualmente, pero permitimos que la animación lo muestre/oculte */
+    opacity: 0;
+    transform: translateY(-10px);
+    max-height: 0; /* Controla la altura para la transición */
+    overflow: hidden; /* Oculta el contenido cuando la altura es 0 */
+    
+    /* Definición de la transición */
+    transition: opacity 0.4s ease, transform 0.4s ease, max-height 0.4s ease; 
+    
+    /* Quitamos bordes y fondos del contenedor */
+    background-color: transparent;
+    border: none;
+    padding: 0 0.5rem;
+    margin-top: 0;
+}
+
+.product-section-container .product-grid-container.visible {
+    /* Estado visible */
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 2000px; /* Un valor alto para que el contenido quepa */
+    padding: 1.5rem 0.5rem; /* Aplicamos el padding solo cuando está visible */
+    display: grid; 
+}
+
+@keyframes fadeInGrid {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* TARJETA DE PRODUCTO */
+.product-section-container .product-card {
+    position: relative !important; 
+    border-radius: 0.75rem; 
+    overflow: hidden;
+    background-color: #f9f9f9;
+    border: 1px solid #E5E7EB;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+}
+/* Efecto hover en la tarjeta */
+.product-section-container .product-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-section-container .product-card-image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; 
+    background-color: #CCC; 
+    min-width: 100%; 
+    height: 0; 
+    overflow: hidden; 
+}
+
+.product-section-container .product-card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* LUPA Y DETALLES (Sin cambios) */
+.product-section-container .lupa-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0, 0, 0, 0.5);opacity:0;transform:scale(0.9);display:flex;align-items:center;justify-content:center;transition:all 0.3s ease}
+.product-section-container .product-card:hover .lupa-overlay{opacity:1;transform:scale(1)}
+.product-section-container .lupa-button{background-color:#EF4444;border:none;border-radius:50%;width:4rem;height:4rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.product-section-container .lupa-button img{width:2rem;height:2rem;filter:brightness(0) invert(1)}
+.product-section-container .lupa-button:hover{transform:scale(1.15)}
+.product-section-container #product-detail-view{transition:opacity 0.3s ease-in-out}
+.product-section-container .product-detail-content{opacity:0;animation:productFadeIn 0.5s ease forwards}
+.product-section-container .product-detail-content img.detail-image{width:100%;aspect-ratio:1 / 1;object-fit:contain;border-radius:0.75rem;margin-bottom:1rem;border:1px solid #E5E7EB}
+.product-section-container .product-detail-content h2{font-size:1.75rem;font-weight:700;color:#1F2937;margin-bottom:1rem}
+.product-section-container .product-detail-content h3{font-size:1.125rem;font-weight:600;color:#EF4444;margin-top:1.5rem;margin-bottom:0.5rem;border-bottom:2px solid #FEE2E2;padding-bottom:0.25rem}
+.product-section-container .product-detail-content p{font-size:1rem;color:#4B5563;line-height:1.6}
+@keyframes productFadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* 12. PÁGINA DE RECETARIO (ESTILOS COMPLETOS) */
+
+/* ---- 1. Cabecera (Hero) ---- */
+#hero-recetario {
+    width: 100%;
+    height: 450px;
+    position: relative;
+    overflow: hidden;
+    /* Usamos una de las imágenes de receta como fondo de prueba */
+    background-image: url('../img/recetas/pasta.jpeg');
+    background-size: cover;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Alineado a la derecha como en Contacto */
+}
+
+#hero-recetario::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.60); /* Overlay oscuro */
+    z-index: 1;
+}
+
+/* Reutiliza .hero-content y .hero-title de la Sección 10 (Contacto) */
+
+
+/* ---- 2. Contenedor y Títulos de Sección ---- */
+.recipe-page-container {
+    background-color: #FFF; /* Fondo blanco para la página */
+}
+
+.recipe-section-title {
+    font-family: 'Fluffy', sans-serif;
+    font-size: 3.5rem; /* 56px */
+    font-weight: 700;
+    color: #c30000; /* Rojo Arichuna */
+    text-align: center;
+    margin-bottom: 2.5rem; /* 40px */
+}
+
+/* ---- 3. Tarjeta de Receta (El Card) ---- */
+.recipe-card {
+    display: flex;
+    flex-direction: column; /* Apilado en móvil por defecto */
+    background-color: #ffffff;
+    border-radius: 1rem; /* 16px */
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Layout de escritorio (lado a lado) */
+@media (min-width: 1024px) { /* lg: */
+    .recipe-card {
+        flex-direction: row; /* Lado a lado */
+        max-height: 400px; /* Controla la altura */
+    }
+    
+    /* Clase para invertir el layout */
+    .recipe-card.layout-reversed {
+        flex-direction: row-reverse;
+    }
+}
+
+/* ---- 4. Contenido de la Tarjeta ---- */
+
+.recipe-image-container {
+    flex-basis: 100%; /* Ocupa todo en móvil */
+    overflow: hidden;
+}
+
+.recipe-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease-out;
+}
+
+.recipe-card:hover .recipe-image {
+    transform: scale(1.05); /* Efecto zoom al pasar el mouse */
+}
+
+.recipe-content {
+    flex-basis: 100%; /* Ocupa todo en móvil */
+    padding: 2rem 2.5rem; /* 32px y 40px */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Layout de escritorio (50/50) */
+@media (min-width: 1024px) { /* lg: */
+    .recipe-image-container {
+        flex-basis: 55%; /* La imagen es un poco más grande */
+    }
+    .recipe-content {
+        flex-basis: 45%; /* El texto es un poco más pequeño */
+    }
+}
+
+.recipe-title {
+    font-family: 'Fluffy', sans-serif;
+    font-size: 2.5rem; /* 40px */
+    color: #374151; /* Gris oscuro */
+    margin-bottom: 1rem;
+}
+
+.recipe-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.125rem; /* 18px */
+    color: #4B5563; /* Gris medio */
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.recipe-button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.85rem 1.5rem;
+    
+    /* Colores de la marca */
+    background-color: #c30000; /* Rojo principal */
+    color: #FFFFFF;
+    
+    border-radius: 999px; /* Botón tipo "píldora" */
+    box-shadow: 0 4px 10px rgba(195, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    align-self: flex-start; /* No ocupa todo el ancho */
+}
+
+.recipe-button:hover {
+    background-color: #fab32e; /* Amarillo mostaza */
+    color: #c30000; /* Texto rojo */
+    box-shadow: 0 6px 15px rgba(250, 179, 46, 0.4);
+    transform: translateY(-2px);
+}
+
+/* 13. ANIMACIONES DE SCROLL RECETARIO (INCLUIDAS) */
+.animate-on-scroll{opacity:0;transition:opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);will-change:opacity, transform}
+.animate-on-scroll.animate-from-left{transform:translateX(-100px)}
+.animate-on-scroll.animate-from-right{transform:translateX(100px)}
+.animate-on-scroll.is-visible{opacity:1;transform:translate(0, 0)}
+
+/* 12. CTA A RECETARIO (CON PARALLAX) */
+/* (Este bloque pertenece a la página de PRODUCTOS, pero lo mantenemos) */
+#productos-cta-recetario{position:relative;padding:6rem 2rem;background-image:url('img/recetas/pan.png');background-attachment:fixed;background-position:center center;background-size:cover}
+.productos-parallax-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(195, 0, 0, 0.65);z-index:1}
+
+/* 14. PÁGINA DE VENTAS */
+#hero-ventas{width:100%;height:450px;position:relative;overflow:hidden;background-image:url('../img/recetas/pan.png');background-size:cover;background-position:center 40%;display:flex;align-items:center;justify-content:flex-start}
+#hero-ventas::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0, 0, 0, 0.60);z-index:1}
+.ventas-section-title{font-family:'Fluffy',sans-serif;font-size:3.5rem;font-weight:700;color:#c30000;text-align:center;margin-bottom:2rem}
+.ventas-intro-text{font-family:'Montserrat',sans-serif;font-size:1.25rem;color:#4B5563;line-height:1.7}
+.ventas-options-container{display:grid;grid-template-columns:1fr}
+@media (min-width: 1024px){.ventas-options-container{grid-template-columns:1fr 1fr}}
+.ventas-option-card{position:relative;padding:6rem 2rem;min-height:70vh;display:flex;align-items:center;justify-content:center;background-size:cover;background-position:center;overflow:hidden}
+#ventas-opcion-vender{background-image:url('../img/recetas/salchicha.jpg')}
+#ventas-opcion-distribuir{background-image:url('../img/recetas/pasta.jpeg')}
+.ventas-option-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0, 0, 0, 0.5);z-index:1}
+.ventas-option-content{position:relative;z-index:2;max-width:420px;text-align:center;padding:2.5rem;border-radius:1rem;background:rgba(255, 255, 255, 0.85);backdrop-filter:blur(10px);border:1px solid rgba(255, 255, 255, 0.4);box-shadow:0 10px 30px rgba(0, 0, 0, 0.2);transform:scale(1);transition:transform 0.4s ease, box-shadow 0.4s ease}
+.ventas-option-card:hover .ventas-option-content{transform:scale(1.05);box-shadow:0 15px 40px rgba(0, 0, 0, 0.25)}
+.ventas-option-title{font-family:'Fluffy',sans-serif;font-size:2.75rem;color:#c30000;margin-bottom:1rem}
+.ventas-option-description{font-family:'Montserrat',sans-serif;font-size:1.1rem;color:#374151;line-height:1.6;margin-bottom:2rem}
+.ventas-button{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1rem;text-transform:uppercase;text-decoration:none;padding:0.85rem 2rem;background-color:#c30000;color:#FFFFFF;border-radius:999px;box-shadow:0 4px 10px rgba(195, 0, 0, 0.2);transition:all 0.3s ease}
+.ventas-button:hover{background-color:#fab32e;color:#c30000;box-shadow:0 6px 15px rgba(250, 179, 46, 0.4);transform:translateY(-2px)}
+.benefit-card{background:#FFF;padding:2.5rem 2rem;border-radius:1rem;box-shadow:0 8px 20px rgba(0, 0, 0, 0.07);transition:transform 0.3s ease, box-shadow 0.3s ease}
+.benefit-card:hover{transform:translateY(-8px);box-shadow:0 12px 25px rgba(0, 0, 0, 0.1)}
+.benefit-icon{width:4rem;height:4rem;margin-left:auto;margin-right:auto;margin-bottom:1.5rem}
+.benefit-title{font-family:'Fluffy',sans-serif;font-size:1.75rem;color:#374151;margin-bottom:0.75rem}
+.benefit-text{font-family:'Montserrat',sans-serif;font-size:1rem;color:#4B5563;line-height:1.6}
+.ventas-parallax-section{position:relative;padding:6rem 2rem;background-image:url('../img/recetas/pan.png');background-attachment:fixed;background-position:center center;background-size:cover}
+.parallax-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(195, 0, 0, 0.65);z-index:1}
+.ventas-parallax-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(195, 0, 0, 0.8);z-index:1}
+.ventas-button-alt{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.1rem;text-transform:uppercase;text-decoration:none;padding:1rem 2.5rem;background-color:#fab32e;color:#c30000;border-radius:999px;box-shadow:0 4px 15px rgba(250, 179, 46, 0.3);transition:all 0.3s ease}
+.ventas-button-alt:hover{background-color:#fff;color:#c30000;box-shadow:0 6px 20px rgba(255, 255, 255, 0.4);transform:translateY(-3px)}
+.form-input-compact {
+    border: 1px solid #D1D5DB; 
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+    color: #1F2937; 
+    background-color: #fff;
+    width: 100%;
+    border-radius: 0.5rem; /* Menos redondeado que el grande para ahorrar espacio */
+    transition: border-color 0.2s;
+}
+.form-input-compact:focus {
+    outline: none; 
+    border-color: #EF4444; 
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2); 
+}
+
+/* ESTADOS DE VISIBILIDAD PARA LA ANIMACIÓN */
+.view-initial {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.view-form {
+    /* Estilos base para la transición */
+    transition: opacity 0.5s ease;
+}
+
+/* Clases de utilidad para ocultar/mostrar (usadas por JS) */
+.hidden-view {
+    display: none;
+}
+.fading-out {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+/* 15. PÁGINA NOSOTROS */
+#hero-nosotros-page{width:100%;height:450px;position:relative;overflow:hidden;background-image:url('../img/fachada.jpg');background-size:cover;background-position:center 30%;display:flex;align-items:center;justify-content:flex-start}
+#hero-nosotros-page::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0, 0, 0, 0.60);z-index:1}
+.nosotros-section-title{font-family:'Fluffy',sans-serif;font-size:3.5rem;font-weight:700;color:#c30000}
+.nosotros-body-text{font-family:'Montserrat',sans-serif;font-size:1.125rem;color:#4B5563;line-height:1.8}
+.nosotros-history-image{width:100%;height:auto;border-radius:1rem;object-fit:cover;aspect-ratio:4 / 3;box-shadow:0 15px 30px rgba(0, 0, 0, 0.15)}
+.nosotros-mv-parallax{position:relative;padding:4rem 0;background-image:url('../img/recetas/pasta.jpg');background-attachment:fixed;background-position:center center;background-size:cover}
+.nosotros-mv-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(195, 0, 0, 0.85);z-index:1}
+.nosotros-mv-title{font-family:'Fluffy',sans-serif;font-size:3rem;color:#fab32e;margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:3px solid #fab32e;display:inline-block}
+.nosotros-mv-text{font-family:'Montserrat',sans-serif;font-size:1.125rem;line-height:1.8;color:#FFF}
+.nosotros-news-bg{background-color:#f9fafb;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb}
+.news-card{background-color:#fff;border-radius:1rem;box-shadow:0 8px 20px rgba(0, 0, 0, 0.07);overflow:hidden;transition:transform 0.3s ease, box-shadow 0.3s ease}
+.news-card:hover{transform:translateY(-8px);box-shadow:0 12px 25px rgba(0, 0, 0, 0.1)}
+.news-card-link{text-decoration:none;display:block}
+.news-image-container{width:100%;aspect-ratio:16 / 9;overflow:hidden}
+.news-image{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease}
+.news-card:hover .news-image{transform:scale(1.05)}
+.news-content{padding:1.75rem}
+.news-date{font-family:'Montserrat',sans-serif;font-size:0.875rem;font-weight:700;color:#fab32e;text-transform:uppercase;margin-bottom:0.5rem;display:block}
+.news-title{font-family:'Fluffy',sans-serif;font-size:1.75rem;line-height:1.3;color:#1f2937;margin-bottom:0.75rem}
+.news-excerpt{font-family:'Montserrat',sans-serif;font-size:1rem;color:#4B5563;line-height:1.6;margin-bottom:1.25rem}
+.news-read-more{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;color:#c30000;text-decoration:none;transition:color 0.3s ease}
+.news-card:hover .news-read-more{color:#fab32e}
