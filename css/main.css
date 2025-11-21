@@ -11,7 +11,7 @@ html,body{background:#fff;overflow-x:clip}
 
 /* 2. TIPOGRAFÍA / LOGOS */
 #main-nav a,#mobile-menu a{font-family:'Montserrat',sans-serif!important;font-size:17px}
-@font-face{font-family:'Fluffy';src:url('../css/fuentes/BLACKJAR.TTF') format('truetype');font-display:swap}
+@font-face{font-family:'Fluffy';src:url('../css/fuentes/Fluffy.ttf') format('truetype');font-display:swap}
 /* Títulos con 'Fluffy' ahora se controlan por clases específicas */
 .logo-head{max-width:220px;height:auto}
 #scrolled-logo-container img{max-width:96px;height:auto}
@@ -652,4 +652,5 @@ transform: translate(0, 0);
 .news-title{font-family:'Fluffy',sans-serif;font-size:1.75rem;line-height:1.3;color:#1f2937;margin-bottom:0.75rem}
 .news-excerpt{font-family:'Montserrat',sans-serif;font-size:1rem;color:#4B5563;line-height:1.6;margin-bottom:1.25rem}
 .news-read-more{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;color:#c30000;text-decoration:none;transition:color 0.3s ease}
+
 .news-card:hover .news-read-more{color:#fab32e}
