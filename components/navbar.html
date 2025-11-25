@@ -1,7 +1,7 @@
 <header id="main-header" class="bg-custom-header-top shadow-sm sticky top-0 z-40">
   <div id="header-top-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-center relative">
 
-    <!-- Socials top (hidden on small) -->
+    <!-- Socials top -->
     <div id="social-icons-top" class="hidden md:flex space-x-3 absolute right-4 lg:right-8 transition-all duration-300">
       <a href="https://www.facebook.com/jamonarichunave" target="_blank"><img src="img/fb.png" alt="Facebook" class="w-8 h-8 object-cover"></a>
       <a href="https://www.instagram.com/jamonarichuna" target="_blank"><img src="img/ig.png" alt="Instagram" class="w-8 h-8 object-cover"></a>
@@ -30,22 +30,25 @@
       </div>
 
       <div class="flex justify-between items-center space-x-4">
-        <!-- Compact logo (shown when scrolled) -->
+        <!-- Compact logo (scroll) -->
         <div id="scrolled-logo-container" class="scrolled-item-hidden flex-shrink-0">
           <a href="#"><img src="img/logo.png" alt="Logo Arichuna" class="w-24 h-auto"></a>
         </div>
 
-        <!-- Desktop menu -->
+        <!-- MENU ESCRITORIO -->
         <div id="main-menu-desktop" class="hidden lg:flex lg:flex-grow lg:justify-center lg:space-x-12">
-          <a href="#" class="text-red-600 px-4 py-4 text-lg font-bold transition duration-300 transform shadow-sm hover:shadow-md hover:-translate-y-0.5">Inicio</a>
-          <a href="nosotros.html" class="text-zinc-50 hover:text-red-600 px-4 py-4 text-lg font-bold transition duration-300 transform shadow-sm hover:shadow-md hover:-translate-y-0.5">Nosotros</a>
-          <a href="productos.html" class="text-zinc-50 hover:text-red-600 px-4 py-4 text-lg font-bold transition duration-300 transform shadow-sm hover:shadow-md hover:-translate-y-0.5">Productos</a>
-          <a href="recetario.html" class="text-zinc-50 hover:text-red-600 px-4 py-4 text-lg font-bold transition duration-300 transform shadow-sm hover:shadow-md hover:-translate-y-0.5">Recetario</a>
-          <a href="contacto.html" class="text-zinc-50 hover:text-red-600 px-4 py-4 text-lg font-bold transition duration-300 transform shadow-sm hover:shadow-md hover:-translate-y-0.5">Contacto</a>
-          <a href="ventas.html" class="text-zinc-50 hover:text-red-600 px-4 py-4 text-lg font-bold transition duration-300 transform shadow-sm hover:shadow-md hover:-translate-y-0.5">Ventas</a>
+            <!-- INICIO: Clase fija 'nav-highlight' para el subrayado y levantamiento -->
+            <a href="#" class="nav-item nav-highlight">Inicio</a>
+            
+            <!-- Resto de enlaces: Solo clase base -->
+            <a href="nosotros.html" class="nav-item">Nosotros</a>
+            <a href="productos.html" class="nav-item">Productos</a>
+            <a href="recetario.html" class="nav-item">Recetario</a>
+            <a href="contacto.html" class="nav-item">Contacto</a>
+            <a href="ventas.html" class="nav-item">Ventas</a>
         </div>
 
-        <!-- Compact socials (shown when scrolled) -->
+        <!-- Compact socials (scroll) -->
         <div id="scrolled-social-container" class="scrolled-item-hidden flex-shrink-0 flex space-x-4">
           <a href="https://www.facebook.com/jamonarichunave" target="_blank"><img src="img/fb.png" alt="Facebook" class="w-8 h-8 object-cover"></a>
           <a href="https://www.instagram.com/jamonarichuna" target="_blank"><img src="img/ig.png" alt="Instagram" class="w-8 h-8 object-cover"></a>
@@ -54,7 +57,7 @@
       </div>
     </div>
 
-    <!-- Mobile menu (hidden by default, toggled by JS) -->
+    <!-- Mobile menu -->
     <div id="mobile-menu" class="hidden bg-white shadow-lg lg:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-start">
         <a href="index.html" class="text-red-700 block px-3 py-2 rounded-md text-base font-medium">Inicio</a>
@@ -67,5 +70,3 @@
     </div>
   </nav>
 </header>
-
-

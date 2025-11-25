@@ -205,34 +205,43 @@ function waitForElement(selector,callback,maxTries=50){let tries=0;const interva
 /* 9. STARTUP */
 document.addEventListener('DOMContentLoaded',()=>{if(document.getElementById('main-header')) initPageScripts();else document.addEventListener('navbar-loaded',initPageScripts,{once:true});waitForElement('.footer-quote',startFooterAnimation);});
 
-/* 11. LÓGICA DE PÁGINA DE PRODUCTOS (ACORDEÓN MÚLTIPLE) */
+
+/* 11. LÓGICA DE PÁGINA DE PRODUCTOS (ACORDEÓN MÚLTIPLE CON MORTADELA Y NARANJA) */
 (function() {
 
     // --- 1. Base de Datos ---
     const families = [
         { id: 1, name: "Jamones", icon: "img/ubicacion.png" },
-        { id: 2, name: "Cortes", icon: "img/ubicacion.png" },
-        { id: 3, name: "Salchichas", icon: "img/ubicacion.png" }
+        { id: 2, name: "Ahumados", icon: "img/ubicacion.png" },
+        { id: 3, name: "Salchichas", icon: "img/ubicacion.png" },
+        { id: 4, name: "Mortadelas", icon: "img/ubicacion.png" } // Nueva Familia
     ];
 
     const productData = [
-        // ... (Tus datos de productos se mantienen igual, asegúrate de tenerlos aquí) ...
+        // Redistribución de productos para llenar las 4 familias
+        // FAMILIA 1: JAMONES
         { id: 1, name: "Producto 1", image: "img/productos/producto-(1).png", family: 1, ingredients: "Ingrediente A...", quantities: "100g..." },
         { id: 2, name: "Producto 2", image: "img/productos/producto-(2).png", family: 1, ingredients: "Ingrediente A...", quantities: "100g..." },
         { id: 3, name: "Producto 3", image: "img/productos/producto-(3).png", family: 1, ingredients: "Ingrediente A...", quantities: "100g..." },
         { id: 4, name: "Producto 4", image: "img/productos/producto-(4).png", family: 1, ingredients: "Ingrediente A...", quantities: "100g..." },
-        { id: 5, name: "Producto 5", image: "img/productos/producto-(5).png", family: 1, ingredients: "Ingrediente A...", quantities: "100g..." },
+        
+        // FAMILIA 2: AHUMADOS
+        { id: 5, name: "Producto 5", image: "img/productos/producto-(5).png", family: 2, ingredients: "Ingrediente A...", quantities: "100g..." },
         { id: 6, name: "Producto 6", image: "img/productos/producto-(6).png", family: 2, ingredients: "Ingrediente D...", quantities: "1L..." },
         { id: 7, name: "Producto 7", image: "img/productos/producto-(7).png", family: 2, ingredients: "Ingrediente D...", quantities: "1L..." },
         { id: 8, name: "Producto 8", image: "img/productos/producto-(8).png", family: 2, ingredients: "Ingrediente D...", quantities: "1L..." },
-        { id: 9, name: "Producto 9", image: "img/productos/producto-(9).png", family: 2, ingredients: "Ingrediente D...", quantities: "1L..." },
-        { id: 10, name: "Producto 10", image: "img/productos/producto-(10).png", family: 2, ingredients: "Ingrediente D...", quantities: "1L..." },
+        
+        // FAMILIA 3: SALCHICHAS
+        { id: 9, name: "Producto 9", image: "img/productos/producto-(9).png", family: 3, ingredients: "Ingrediente D...", quantities: "1L..." },
+        { id: 10, name: "Producto 10", image: "img/productos/producto-(10).png", family: 3, ingredients: "Ingrediente D...", quantities: "1L..." },
         { id: 11, name: "Producto 11", image: "img/productos/producto-(11).png", family: 3, ingredients: "Ingrediente F...", quantities: "Paquete..." },
         { id: 12, name: "Producto 12", image: "img/productos/producto-(12).png", family: 3, ingredients: "Ingrediente F...", quantities: "Paquete..." },
-        { id: 13, name: "Producto 13", image: "img/productos/producto-(13).png", family: 3, ingredients: "Ingrediente F...", quantities: "Paquete..." },
-        { id: 14, name: "Producto 14", image: "img/productos/producto-(14).png", family: 3, ingredients: "Ingrediente F...", quantities: "Paquete..." },
-        { id: 15, name: "Producto 15", image: "img/productos/producto-(15).png", family: 3, ingredients: "Ingrediente F...", quantities: "Paquete..." },
-        { id: 16, name: "Producto 16", image: "img/productos/producto-(16).png", family: 3, ingredients: "Ingrediente F...", quantities: "Paquete..." }
+        
+        // FAMILIA 4: MORTADELAS
+        { id: 13, name: "Producto 13", image: "img/productos/producto-(13).png", family: 4, ingredients: "Ingrediente F...", quantities: "Paquete..." },
+        { id: 14, name: "Producto 14", image: "img/productos/producto-(14).png", family: 4, ingredients: "Ingrediente F...", quantities: "Paquete..." },
+        { id: 15, name: "Producto 15", image: "img/productos/producto-(15).png", family: 4, ingredients: "Ingrediente F...", quantities: "Paquete..." },
+        { id: 16, name: "Producto 16", image: "img/productos/producto-(16).png", family: 4, ingredients: "Ingrediente F...", quantities: "Paquete..." }
     ];
 
     let accordionContainer, detailContainer, placeholder;
@@ -241,6 +250,7 @@ document.addEventListener('DOMContentLoaded',()=>{if(document.getElementById('ma
     function renderDetail(productId) {
         const product = productData.find(p => p.id == productId);
         if (!product) return;
+        // Se cambió el color del título de ingredientes a naranja en CSS, no requiere cambio aquí
         const newHtml = `<div class="product-detail-content"><img src="${product.image}" alt="${product.name}" class="detail-image"><h2>${product.name}</h2><h3>Ingredientes</h3><p>${product.ingredients}</p><h3>Cantidades Disponibles</h3><p>${product.quantities}</p></div>`;
         if (placeholder) { placeholder.style.display = 'none'; }
         detailContainer.style.opacity = 0;
@@ -260,20 +270,12 @@ document.addEventListener('DOMContentLoaded',()=>{if(document.getElementById('ma
 
         // Alternar visibilidad del grid
         if (gridToToggle.classList.contains('visible')) {
-            // OCULTAR SUAVEMENTE
             gridToToggle.classList.remove('visible');
-            
-            // CRÍTICO: Esperar a que termine la transición (0.4s) antes de aplicar display: none
             setTimeout(() => {
                  gridToToggle.style.display = 'none';
             }, 400); 
-
         } else {
-            // MOSTRAR SUAVEMENTE
-            gridToToggle.style.display = 'grid'; // Aseguramos que se muestre primero como grid
-            
-            // Pequeño delay para permitir que el navegador aplique 'display: grid'
-            // antes de aplicar la clase 'visible' y disparar la transición.
+            gridToToggle.style.display = 'grid'; 
             setTimeout(() => {
                 gridToToggle.classList.add('visible');
             }, 10);
@@ -298,27 +300,21 @@ document.addEventListener('DOMContentLoaded',()=>{if(document.getElementById('ma
         if (!accordionContainer || !detailContainer) return;
 
         families.forEach(family => {
-            // 1. Crear el bloque contenedor de la familia
             const familyBlock = document.createElement('div');
-            // Aseguramos que el bloque ocupe el ancho completo
             familyBlock.className = 'w-full'; 
 
-            // 2. Crear el Botón
             const button = document.createElement('button');
             button.className = 'family-selector-btn';
             button.dataset.familyId = family.id;
             button.innerHTML = `<img src="${family.icon}" alt="${family.name}"><span>${family.name}</span>`;
             
-            // 3. Crear el Grid de Productos (Oculto al inicio)
             const grid = document.createElement('div');
-            // CLAVE: Aquí definimos la estructura de columnas GRID que el CSS ahora respetará
             grid.className = 'product-grid-container grid grid-cols-2 md:grid-cols-3 gap-6';
 
-            // 4. Llenar el grid
             const products = productData.filter(p => p.family == family.id);
             products.forEach(product => {
                 const card = document.createElement('div');
-                card.className = 'product-card'; // Sin forzar medidas raras, el grid se encarga
+                card.className = 'product-card'; 
                 card.dataset.productId = product.id;
                 card.innerHTML = `
                     <div class="product-card-image-wrapper">
@@ -333,15 +329,11 @@ document.addEventListener('DOMContentLoaded',()=>{if(document.getElementById('ma
                 grid.appendChild(card);
             });
 
-            // 5. Ensamblar: Botón + Grid dentro del bloque
             familyBlock.appendChild(button);
             familyBlock.appendChild(grid);
-
-            // 6. Añadir al contenedor principal
             accordionContainer.appendChild(familyBlock);
         });
 
-        // Event Listeners
         accordionContainer.addEventListener('click', handleFamilyClick);
         accordionContainer.addEventListener('click', handleProductClick);
     }
@@ -413,3 +405,20 @@ document.addEventListener('DOMContentLoaded',()=>{if(document.getElementById('ma
     });
 
 })();
+
+//MAPA EN PAGINA DE CONTACTO
+const slider = document.querySelector(".map-slider");
+const btns = document.querySelectorAll(".map-btn");
+
+btns.forEach((btn, index) => {
+
+    btn.addEventListener("click", () => {
+
+        // activar botón
+        btns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        // mover slider
+        slider.style.transform = `translateX(-${index * 100}%)`;
+    });
+});
