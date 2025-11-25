@@ -329,7 +329,7 @@ transform: translate(0, 0);
 /* 11. SECCIÓN DE PRODUCTOS (COLOR NARANJA Y FONDOS BLANCOS) */
 
 /* Estilos de Texto Intro y Títulos */
-.product-page-title{font-family:'Fluffy',sans-serif;font-size:3.5rem;font-weight:700;color:#fab32e;margin-bottom:2rem}
+.product-page-title{font-family:'Fluffy',sans-serif;font-size:3.5rem;font-weight:500;color:#fab32e;margin-bottom:2rem}
 .product-intro-text{font-family:'Montserrat',sans-serif;font-size:1.25rem;color:#6e5151;line-height:1.7}
 .product-section-title{font-family:'Fluffy',sans-serif;font-size:2.75rem;font-weight:700;color:#c30000;margin-bottom:1.5rem}
 
@@ -667,3 +667,4 @@ transform: translate(0, 0);
 .news-read-more{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;color:#c30000;text-decoration:none;transition:color 0.3s ease}
 
 .news-card:hover .news-read-more{color:#fab32e}
+
