@@ -331,7 +331,7 @@ transform: translate(0, 0);
 /* Estilos de Texto Intro y Títulos */
 .product-page-title{font-family:'Fluffy',sans-serif;font-size:3.5rem;font-weight:500;color:#fab32e;margin-bottom:2rem}
 .product-intro-text{font-family:'Montserrat',sans-serif;font-size:1.25rem;color:#6e5151;line-height:1.7}
-.product-section-title{font-family:'Fluffy',sans-serif;font-size:2.75rem;font-weight:700;color:#c30000;margin-bottom:1.5rem}
+.product-section-title{font-family:'Fluffy',sans-serif;font-size:2.75rem;font-weight:500;color:#c30000;margin-bottom:1.5rem}
 
 /* CONTENEDOR DE BLOQUE (Botón + Grid) */
 .family-block {
@@ -466,7 +466,7 @@ transform: translate(0, 0);
 .product-section-container .product-detail-content img.detail-image{width:100%;aspect-ratio:1 / 1;object-fit:contain;border-radius:0.75rem;margin-bottom:1rem;border:1px solid #E5E7EB}
 
 /* Color Vinotinto para el título del producto en el detalle */
-.product-section-container .product-detail-content h2{font-size:1.75rem;font-weight:700;color:#640202;margin-bottom:1rem}
+.product-section-container .product-detail-content h2{font-size:1.75rem;font-weight:500;color:#640202;margin-bottom:1rem}
 
 /* Los encabezados de sección del detalle se mantienen naranjas */
 .product-section-container .product-detail-content h3{font-size:1.125rem;font-weight:600;color:#fab32e;margin-top:1.5rem;margin-bottom:0.5rem;border-bottom:2px solid rgba(250, 179, 46, 0.3);padding-bottom:0.25rem}
@@ -492,7 +492,7 @@ transform: translate(0, 0);
 .recipe-section-title {
     font-family: 'Fluffy', sans-serif;
     font-size: 3.5rem;
-    font-weight: 700;
+    font-weight: 500;
     color: #fab32e; /* Título fuera de card: Naranja */
     text-align: center;
     margin-bottom: 2.5rem;
@@ -661,10 +661,11 @@ transform: translate(0, 0);
 .news-image{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease}
 .news-card:hover .news-image{transform:scale(1.05)}
 .news-content{padding:1.75rem}
-.news-date{font-family:'Montserrat',sans-serif;font-size:0.875rem;font-weight:700;color:#fab32e;text-transform:uppercase;margin-bottom:0.5rem;display:block}
+.news-date{font-family:'Montserrat',sans-serif;font-size:0.875rem;font-weight:500;color:#fab32e;text-transform:uppercase;margin-bottom:0.5rem;display:block}
 .news-title{font-family:'Fluffy',sans-serif;font-size:1.75rem;line-height:1.3;color:#640202;margin-bottom:0.75rem}
 .news-excerpt{font-family:'Montserrat',sans-serif;font-size:1rem;color:#6e5151;line-height:1.6;margin-bottom:1.25rem}
 .news-read-more{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;color:#c30000;text-decoration:none;transition:color 0.3s ease}
 
 .news-card:hover .news-read-more{color:#fab32e}
+
 
