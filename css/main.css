@@ -17,7 +17,7 @@ html,body{background:#fff;overflow-x:clip}
 #scrolled-logo-container img{max-width:96px;height:auto}
 
 /* 3. HEADER: sticky, scrolled state y linea */
-/* Estilos Base del Header */
+/* HEADER: sticky, scrolled state y linea */
 .bg-custom-header-top{background:url('../img/fondo_head.jpg') center/cover no-repeat;background-color:#fab32e;transition:background-color .3s}
 .header-scrolled-state{background-color:var(--compact-end-color)!important;background-image:none!important}
 #main-header{z-index:40;position:fixed;top:0;left:0;width:100%}body{transition:padding-top .3s}
@@ -29,41 +29,21 @@ html,body{background:#fff;overflow-x:clip}
 .header-scrolled-state + #carousel-container{margin-top:var(--header-total-height-scrolled)}
 .scrolled-item-hidden{opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s;pointer-events:none}
 .header-scrolled-state #scrolled-logo-container,.header-scrolled-state #scrolled-social-container{opacity:1;transform:translateY(0);pointer-events:auto}
-@media(max-width:1023px){#hamburger-wrapper{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transition:left .3s,transform .3s}}
+
+/* CORRECCIÓN HAMBURGUESA */
+@media(max-width:1023px){
+    #hamburger-wrapper{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transition:left .3s,transform .3s; z-index: 50; cursor: pointer;}
+}
+
 .header-scrolled-state #hamburger-wrapper{left:9rem;transform:translateY(-50%)}
 #main-logo-top{transition:transform .3s}#header-top-content a:hover #main-logo-top{transform:scale(1.05) rotate(2deg)}
 .header-scrolled-state #main-logo-top{transform:none!important}
 #social-icons-top a img,#scrolled-social-container a img{transition:transform .3s;will-change:transform}#social-icons-top a:hover img,#scrolled-social-container a:hover img{transform:scale(1.1)}
 
 /* NAVEGACIÓN MODERNA */
-.nav-item {
-    display: inline-block;
-    color: #ffffff !important;
-    font-size: 1.125rem;
-    font-weight: 700;
-    padding: 1rem;
-    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-bottom-color 0.3s ease;
-    border-bottom: 3px solid transparent; 
-}
+.nav-item {display: inline-block;color: #ffffff !important;font-size: 1.125rem;font-weight: 700;padding: 1rem;transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-bottom-color 0.3s ease;border-bottom: 3px solid transparent;}
+.nav-highlight, .nav-item:hover {border-bottom-color: #dc2626 !important;transform: translateY(-4px);box-shadow: 6px 0 12px -4px rgba(255, 1, 1, 0.212), -6px 0 12px -4px rgba(255, 0, 0, 0.212);background: rgba(255, 255, 255, 0.1); border-radius: 4px;}
 
-.nav-highlight, .nav-item:hover {
-    border-bottom-color: #dc2626 !important;
-    transform: translateY(-4px);
-    /* Sombra solo a los lados (izquierda y derecha) */
-    box-shadow: 6px 0 12px -4px rgba(255, 1, 1, 0.212), -6px 0 12px -4px rgba(255, 0, 0, 0.212);
-    background: rgba(255, 255, 255, 0.1); 
-    border-radius: 4px;
-}
-
-/* 5. CARRUSEL: transiciones, texto y CURVA SUAVE */
-#carousel-container{position:relative;overflow:hidden;width:100%;border-bottom-left-radius:50% 50px;border-bottom-right-radius:50% 50px}
-#carousel-slides,.slide-content img{border-bottom-left-radius:inherit;border-bottom-right-radius:inherit}
-.carousel-nav-btn{opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
-#carousel-container:hover .carousel-nav-btn{opacity:1;pointer-events:auto}
-#carousel-container:hover #prev-button,#carousel-container:hover #next-button{transform:translateY(-50%) translateX(0)}
-.slide-content .text-fade-in{opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s}
-.slide-content.is-active .text-fade-in{opacity:1;transform:translateY(0)}
-#mobile-menu{transition:opacity .3s;opacity:0;pointer-events:none}#mobile-menu.active{opacity:1;pointer-events:auto}
 
 /* 6. HOME PAGE - SECCIONES */
 /* (Esta sección reemplaza los estilos antiguos de #recetario-descanso y #sobre-nosotros) */

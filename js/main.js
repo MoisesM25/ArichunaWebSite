@@ -1,23 +1,71 @@
 /* main.js - comprimido y seccional */
+/* main.js */
 
-/* 1. INIT & HELPERS */
-function initPageScripts(){
-  const header=document.getElementById('main-header'); if(!header) return;
-  const mobileMenu=document.getElementById('mobile-menu'), menuButton=document.getElementById('menu-button');
-  const scrollThreshold=50;
+// 1. FUNCIÓN GLOBAL MENU (Accesible desde components.js)
+window.initMobileMenu = function() {
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuButton = document.getElementById('menu-button');
+  
+  if (!menuButton || !mobileMenu) return; // Salir si no existen elementos
 
-  /* 2. HEADER STICKY + BODY PADDING */
-  const updateBodyPadding=()=>{const body=document.body;if(window.scrollY>scrollThreshold){header.classList.add('header-scrolled-state');body.style.paddingTop='80px';}else{header.classList.remove('header-scrolled-state');body.style.paddingTop='130px';}};
-  window.addEventListener('scroll',updateBodyPadding); updateBodyPadding();
+  // Eliminar clonando para evitar listeners duplicados al recargar
+  const newBtn = menuButton.cloneNode(true);
+  menuButton.parentNode.replaceChild(newBtn, menuButton);
+  const activeBtn = newBtn;
 
-  /* 3. MOBILE MENU */
-  if(menuButton&&mobileMenu){
-    const showMenu=()=>{mobileMenu.classList.remove('hidden');requestAnimationFrame(()=>mobileMenu.classList.add('active'));menuButton.setAttribute('aria-expanded','true');};
-    const hideMenu=()=>{mobileMenu.classList.remove('active');setTimeout(()=>{if(!mobileMenu.classList.contains('active')) mobileMenu.classList.add('hidden');},250);menuButton.setAttribute('aria-expanded','false');};
-    menuButton.addEventListener('click',e=>{e.stopPropagation();mobileMenu.classList.contains('hidden')?showMenu():hideMenu();});
-    document.addEventListener('click',e=>{if(!mobileMenu.contains(e.target)&&!menuButton.contains(e.target)&&!mobileMenu.classList.contains('hidden')) hideMenu();});
-    window.addEventListener('resize',()=>{if(window.innerWidth>=1024){mobileMenu.classList.add('hidden');mobileMenu.classList.remove('active');menuButton.setAttribute('aria-expanded','false');}});
-  }
+  const showMenu = () => {
+    mobileMenu.classList.remove('hidden');
+    requestAnimationFrame(() => mobileMenu.classList.add('active'));
+    activeBtn.setAttribute('aria-expanded', 'true');
+  };
+  const hideMenu = () => {
+    mobileMenu.classList.remove('active');
+    setTimeout(() => { if (!mobileMenu.classList.contains('active')) mobileMenu.classList.add('hidden'); }, 250);
+    activeBtn.setAttribute('aria-expanded', 'false');
+  };
+
+  activeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    mobileMenu.classList.contains('hidden') ? showMenu() : hideMenu();
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu.contains(e.target) && !activeBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) hideMenu();
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024) {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('active');
+      activeBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+};
+
+// 2. INIT SCRIPTS GENERALES
+function initPageScripts() {
+  const header = document.getElementById('main-header');
+  const scrollThreshold = 50;
+
+  // Lógica Sticky y Padding
+  const updateBodyPadding = () => {
+    if(!header) return;
+    if (window.scrollY > scrollThreshold) {
+      header.classList.add('header-scrolled-state');
+      document.body.style.paddingTop = '80px';
+    } else {
+      // Solo quitar si NO estamos en página interna que fuerza el sticky
+      if (!window.location.pathname.includes('/pages/')) { 
+         header.classList.remove('header-scrolled-state');
+         document.body.style.paddingTop = '130px';
+      }
+    }
+  };
+  window.addEventListener('scroll', updateBodyPadding);
+  updateBodyPadding();
+
+  // Intentar cargar menú (para el index estático)
+  window.initMobileMenu();
 
   /* 4. CARRUSEL PRINCIPAL */
   (function(){
@@ -205,6 +253,12 @@ function waitForElement(selector,callback,maxTries=50){let tries=0;const interva
 /* 9. STARTUP */
 document.addEventListener('DOMContentLoaded',()=>{if(document.getElementById('main-header')) initPageScripts();else document.addEventListener('navbar-loaded',initPageScripts,{once:true});waitForElement('.footer-quote',startFooterAnimation);});
 
+// Ejecutar al cargar
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPageScripts);
+} else {
+  initPageScripts();
+}
 
 /* 11. LÓGICA DE PÁGINA DE PRODUCTOS (MODAL MÓVIL + FIX DESKTOP) */
 (function() {
