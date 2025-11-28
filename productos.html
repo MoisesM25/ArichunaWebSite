@@ -12,10 +12,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/products.css" /> 
 
   <script src="https://unpkg.com/phosphor-icons"></script>
 </head>
-<body class="bg-gray-50"> <div id="navbar-container"></div>
+<body class="bg-gray-50"> 
+  <div id="navbar-container"></div>
 
   <section id="hero-productos" class="hero-section">
       <div class="hero-content">
@@ -31,39 +33,50 @@
               Explora nuestras categorias de productos, cada una elaborada con la tradición y el sabor que nos caracteriza. Desde los Jamones clasicos hasta nuestras innovaciones, aquí encontrarás la calidad Arichuna en cada presentación.
           </p>
       </div>
+
       <div class="product-section-container">
           
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-8">
 
+              <!-- COLUMNA IZQUIERDA: ACORDEÓN Y GRID -->
               <div class="lg:col-span-2">
-    
-    <h3 class="product-section-title animate-on-scroll animate-from-left">Categorias</h3>
-    
-    <div id="accordion-container" class="flex flex-col space-y-4 mb-8 animate-on-scroll animate-from-left" style="transition-delay: 0.2s;">
-        </div>
-
-                  
-                  <div id="family-product-grids" class="mt-12">
-                      </div>
-
+                  <h3 class="product-section-title animate-on-scroll animate-from-left">Categorias</h3>
+                  <div id="accordion-container" class="flex flex-col space-y-4 mb-8 animate-on-scroll animate-from-left" style="transition-delay: 0.2s;">
+                      <!-- Se llena con JS -->
+                  </div>
               </div>
 
-              <div class="lg:col-span-1 lg:border-l lg:pl-8 mt-12 lg:mt-0 animate-on-scroll animate-from-right">
-                  
+              <!-- COLUMNA DERECHA: DETALLE (SOLO DESKTOP) -->
+              <div class="hidden lg:block lg:col-span-1 lg:border-l lg:pl-8 animate-on-scroll animate-from-right">
                   <div id="product-detail-view" class="sticky top-28"> 
-                      
                       <div id="product-detail-placeholder" class="product-detail-content text-center text-gray-500">
                           <img src="img/lupa.png" alt="Ver detalle" class="w-16 h-16 mx-auto mb-4 opacity-30">
                           <h3 class="text-xl font-semibold">Ver Detalle</h3>
                           <p class="mt-2 text-base">Selecciona un producto de la izquierda para ver su información aquí.</p>
                       </div>
-
-                      </div>
+                  </div>
               </div>
 
           </div>
       </div>
   </main>
+
+  <!-- MODAL PARA MÓVILES (NUEVO) -->
+  <div id="mobile-product-modal" class="fixed inset-0 z-50 hidden bg-white overflow-y-auto">
+      <div class="p-4 relative min-h-screen flex flex-col items-center justify-center">
+          <!-- Botón Cerrar -->
+          <button id="close-mobile-modal" class="absolute top-4 right-4 p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-red-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+          </button>
+          
+          <!-- Contenedor del contenido dinámico -->
+          <div id="mobile-modal-content" class="w-full max-w-md pt-10 pb-4">
+              <!-- JS inyectará aquí el detalle -->
+          </div>
+      </div>
+  </div>
 
   <section id="ventas-final-cta" class="ventas-parallax-section">
       <div class="productos-parallax-overlay"></div>
@@ -81,11 +94,10 @@
       </div>
   </section>
 
-
-    <div id="footer-container"></div>
+  <div id="footer-container"></div>
   
   <script src="js/main.js"></script>
-  <script src="js/products.js"></script> <!-- Asegúrate de que el archivo JS de arriba se llame products.js o actualiza esto -->
+  <script src="js/products.js"></script>
   <script src="js/components.js"></script>
   
 </body>

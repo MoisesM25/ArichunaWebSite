@@ -329,157 +329,109 @@ transform: translate(0, 0);
 /* 11. SECCIÓN DE PRODUCTOS (COLOR NARANJA Y FONDOS BLANCOS) */
 
 /* Estilos de Texto Intro y Títulos */
-.product-page-title{font-family:'Fluffy',sans-serif;font-size:3.5rem;font-weight:500;color:#fab32e;margin-bottom:2rem}
+.product-page-title{font-family:'Fluffy',sans-serif;font-size:3.5rem;font-weight:700;color:#fab32e;margin-bottom:2rem}
 .product-intro-text{font-family:'Montserrat',sans-serif;font-size:1.25rem;color:#6e5151;line-height:1.7}
-.product-section-title{font-family:'Fluffy',sans-serif;font-size:2.75rem;font-weight:500;color:#c30000;margin-bottom:1.5rem}
+.product-section-title{font-family:'Fluffy',sans-serif;font-size:2.75rem;font-weight:700;color:#c30000;margin-bottom:1.5rem}
 
 /* CONTENEDOR DE BLOQUE (Botón + Grid) */
-.family-block {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-bottom: 1rem;
-}
+.family-block {display: flex; flex-direction: column; width: 100%; margin-bottom: 1rem;}
 
 /* BOTÓN DE FAMILIA */
 .product-section-container .family-selector-btn {
-    display: flex;
-    flex-direction: row; 
-    align-items: center;
-    justify-content: flex-start;
-    padding: 1rem 1.25rem;
-    border: 2px solid #E5E7EB; 
-    border-radius: 1rem; 
-    background-color: #ffffff;
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.3s ease;
-    width: 100%; 
-    position: relative;
-    z-index: 10;
+    display: flex; flex-direction: row; align-items: center; justify-content: flex-start;
+    padding: 1rem 1.25rem; border: 2px solid #E5E7EB; border-radius: 1rem; 
+    background-color: #ffffff; cursor: pointer; text-align: left; transition: all 0.3s ease;
+    width: 100%; position: relative; z-index: 10;
 }
+.product-section-container .family-selector-btn img {width: 3rem; height: 3rem; margin-right: 1rem; transition: transform 0.3s ease;}
+.product-section-container .family-selector-btn span {font-size: 1.25rem; font-weight: 600; color: #640202; /* Vinotinto */}
 
-.product-section-container .family-selector-btn img {
-    width: 3rem;
-    height: 3rem;
-    margin-right: 1rem;
-    transition: transform 0.3s ease;
-}
-
-.product-section-container .family-selector-btn span {
-    font-size: 1.25rem;
-    font-weight: 600;
-    /* Color Vinotinto para el nombre de la familia */
-    color: #640202; 
-}
-
-/* --- CAMBIO: ROJO A NARANJA (#fab32e) --- */
+/* Hover: Naranja */
 .product-section-container .family-selector-btn:hover {
-    border-color: #fab32e; /* Naranja Arichuna */
-    background-color: rgba(250, 179, 46, 0.1); /* Fondo naranja muy suave */
+    border-color: #fab32e; background-color: rgba(250, 179, 46, 0.1); 
     box-shadow: 0 4px 10px rgba(250, 179, 46, 0.2);
 }
-
-/* ESTADO ACTIVO (ABIERTO) - NARANJA */
+/* Activo: Naranja */
 .product-section-container .family-selector-btn.active {
-    border-color: #fab32e; /* Naranja Arichuna */
-    background-color: rgba(250, 179, 46, 0.1); /* Fondo naranja muy suave */
-    border-radius: 1rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 4px 12px rgba(250, 179, 46, 0.25);
+    border-color: #fab32e; background-color: rgba(250, 179, 46, 0.1); 
+    border-radius: 1rem; margin-bottom: 1.5rem; box-shadow: 0 4px 12px rgba(250, 179, 46, 0.25);
 }
 
-/* CONTENEDOR DEL GRID (ACORDEÓN) */
+/* GRID DE PRODUCTOS */
 .product-section-container .product-grid-container {
-    opacity: 0;
-    transform: translateY(-10px);
-    max-height: 0;
-    overflow: hidden;
+    opacity: 0; transform: translateY(-10px); max-height: 0; overflow: hidden;
     transition: opacity 0.4s ease, transform 0.4s ease, max-height 0.4s ease; 
-    background-color: transparent;
-    border: none;
-    padding: 0 0.5rem;
-    margin-top: 0;
+    background-color: transparent; border: none; padding: 0 0.5rem; margin-top: 0;
 }
-
 .product-section-container .product-grid-container.visible {
-    opacity: 1;
-    transform: translateY(0);
-    max-height: 2000px;
-    padding: 1.5rem 0.5rem;
-    display: grid; 
-}
-
-@keyframes fadeInGrid {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+    opacity: 1; transform: translateY(0); max-height: 2000px; 
+    padding: 1.5rem 0.5rem; display: grid; 
 }
 
 /* TARJETA DE PRODUCTO */
 .product-section-container .product-card {
-    position: relative !important; 
-    border-radius: 0.75rem; 
-    overflow: hidden;
-    background-color: #ffffff;
-    border: 1px solid #E5E7EB;
+    position: relative !important; border-radius: 0.75rem; overflow: hidden;
+    background-color: #ffffff; border: 1px solid #E5E7EB;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; display: block;
 }
-
 .product-section-container .product-card:hover {
     transform: translateY(-5px) !important;
-    /* Sombra ROJA en hover */
-    box-shadow: 0 10px 20px rgba(220, 38, 38, 0.25); 
+    box-shadow: 0 10px 20px rgba(220, 38, 38, 0.25); /* Sombra Roja */
 }
-
 .product-section-container .product-card-image-wrapper {
-    position: relative;
-    width: 100%;
-    padding-top: 100%; 
-    background-color: transparent; 
-    min-width: 100%; 
-    height: 0; 
-    overflow: hidden; 
+    position: relative; width: 100%; padding-top: 100%; 
+    background-color: transparent; min-width: 100%; height: 0; overflow: hidden; 
 }
-
 .product-section-container .product-card-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain;
 }
 
 /* LUPA Y DETALLES */
 .product-section-container .lupa-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(195, 0, 0, 0.65);opacity:0;transform:scale(0.9);display:flex;align-items:center;justify-content:center;transition:all 0.3s ease}
 .product-section-container .product-card:hover .lupa-overlay{opacity:1;transform:scale(1)}
-
-/* Lupa se mantiene amarilla/naranja */
 .product-section-container .lupa-button{background-color:#fab32e;border:none;border-radius:50%;width:4rem;height:4rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .product-section-container .lupa-button img{width:2rem;height:2rem;filter:brightness(0) invert(1)}
 .product-section-container .lupa-button:hover{transform:scale(1.15)}
 
-.product-section-container #product-detail-view{transition:opacity 0.3s ease-in-out}
-.product-section-container .product-detail-content{opacity:0;animation:productFadeIn 0.5s ease forwards}
-.product-section-container .product-detail-content img.detail-image{width:100%;aspect-ratio:1 / 1;object-fit:contain;border-radius:0.75rem;margin-bottom:1rem;border:1px solid #E5E7EB}
+/* --- ESTILOS DE FICHA TÉCNICA (MODIFICADO PARA SCROLL) --- */
 
-/* Color Vinotinto para el título del producto en el detalle */
-.product-section-container .product-detail-content h2{font-size:1.75rem;font-weight:500;color:#640202;margin-bottom:1rem}
+/* Fix para Desktop: Limita la altura y permite scroll interno */
+#product-detail-view {
+    transition: opacity 0.3s ease-in-out;
+    max-height: calc(100vh - 8rem); /* Altura máxima viewport - header */
+    overflow-y: auto; /* Permite scroll si el contenido es largo */
+    /* Estilizado del scrollbar para que sea sutil */
+    scrollbar-width: thin; 
+    scrollbar-color: #fab32e #f1f1f1;
+}
+#product-detail-view::-webkit-scrollbar { width: 6px; }
+#product-detail-view::-webkit-scrollbar-track { background: #f1f1f1; }
+#product-detail-view::-webkit-scrollbar-thumb { background-color: #fab32e; border-radius: 10px; }
 
-/* Los encabezados de sección del detalle se mantienen naranjas */
-.product-section-container .product-detail-content h3{font-size:1.125rem;font-weight:600;color:#fab32e;margin-top:1.5rem;margin-bottom:0.5rem;border-bottom:2px solid rgba(250, 179, 46, 0.3);padding-bottom:0.25rem}
+.product-detail-content{opacity:0;animation:productFadeIn 0.5s ease forwards}
+.product-detail-content img.detail-image{width:100%;aspect-ratio:1 / 1;object-fit:contain;border-radius:0.75rem;margin-bottom:1rem;border:1px solid #E5E7EB}
 
-/* --- CAMBIO FINAL: Color para el contenido de ingredientes y cantidades --- */
-.product-section-container .product-detail-content p{
-    font-size:1rem;
-    color:#6e5151; /* Color Vinotinto/Marrón solicitado */
-    line-height:1.6
+/* Títulos y textos Vinotinto/Naranja */
+.product-detail-content h2{font-size:1.75rem;font-weight:700;color:#640202;margin-bottom:1rem}
+.product-detail-content h3{font-size:1.125rem;font-weight:600;color:#fab32e;margin-top:1.5rem;margin-bottom:0.5rem;border-bottom:2px solid rgba(250, 179, 46, 0.3);padding-bottom:0.25rem}
+.product-detail-content p{font-size:1rem;color:#6e5151;line-height:1.6}
+
+/* --- ESTILOS DEL MODAL MÓVIL (NUEVO) --- */
+#mobile-product-modal {
+    background-color: rgba(255, 255, 255, 0.98); /* Fondo casi opaco */
+    backdrop-filter: blur(5px);
+}
+#mobile-modal-content .product-detail-content {
+    text-align: center;
+    opacity: 1; /* Forzar opacidad en móvil */
+}
+#mobile-modal-content img.detail-image {
+    max-width: 250px;
+    margin: 0 auto 1.5rem auto;
 }
 
 @keyframes productFadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
 
 /* 12. PÁGINA DE RECETARIO (ESTILOS COMPLETOS Y CORREGIDOS) */
 

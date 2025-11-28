@@ -206,7 +206,7 @@ function waitForElement(selector,callback,maxTries=50){let tries=0;const interva
 document.addEventListener('DOMContentLoaded',()=>{if(document.getElementById('main-header')) initPageScripts();else document.addEventListener('navbar-loaded',initPageScripts,{once:true});waitForElement('.footer-quote',startFooterAnimation);});
 
 
-/* 11. LÓGICA DE PÁGINA DE PRODUCTOS (ACORDEÓN MÚLTIPLE CON MORTADELA Y NARANJA) */
+/* 11. LÓGICA DE PÁGINA DE PRODUCTOS (MODAL MÓVIL + FIX DESKTOP) */
 (function() {
 
     // --- 1. Base de Datos ---
@@ -214,11 +214,10 @@ document.addEventListener('DOMContentLoaded',()=>{if(document.getElementById('ma
         { id: 1, name: "Jamones", icon: "img/ubicacion.png" },
         { id: 2, name: "Ahumados", icon: "img/ubicacion.png" },
         { id: 3, name: "Salchichas", icon: "img/ubicacion.png" },
-        { id: 4, name: "Mortadelas", icon: "img/ubicacion.png" } // Nueva Familia
+        { id: 4, name: "Mortadelas", icon: "img/ubicacion.png" } 
     ];
 
     const productData = [
-        // Redistribución de productos para llenar las 4 familias
         // FAMILIA 1: JAMONES
         { id: 1, name: "Producto 1", image: "img/productos/producto-(1).png", family: 1, ingredients: "Ingrediente A...", quantities: "100g..." },
         { id: 2, name: "Producto 2", image: "img/productos/producto-(2).png", family: 1, ingredients: "Ingrediente A...", quantities: "100g..." },
@@ -245,19 +244,52 @@ document.addEventListener('DOMContentLoaded',()=>{if(document.getElementById('ma
     ];
 
     let accordionContainer, detailContainer, placeholder;
+    let mobileModal, mobileModalContent, closeMobileModalBtn;
 
-    // --- Renderizado del Detalle ---
-    function renderDetail(productId) {
-        const product = productData.find(p => p.id == productId);
-        if (!product) return;
-        // Se cambió el color del título de ingredientes a naranja en CSS, no requiere cambio aquí
-        const newHtml = `<div class="product-detail-content"><img src="${product.image}" alt="${product.name}" class="detail-image"><h2>${product.name}</h2><h3>Ingredientes</h3><p>${product.ingredients}</p><h3>Cantidades Disponibles</h3><p>${product.quantities}</p></div>`;
-        if (placeholder) { placeholder.style.display = 'none'; }
-        detailContainer.style.opacity = 0;
-        setTimeout(() => { detailContainer.innerHTML = newHtml; detailContainer.style.opacity = 1; }, 250);
+    // --- Generar HTML del Detalle (Reutilizable) ---
+    function generateDetailHTML(product) {
+        return `
+            <div class="product-detail-content">
+                <img src="${product.image}" alt="${product.name}" class="detail-image">
+                <h2>${product.name}</h2>
+                <h3>Ingredientes</h3>
+                <p>${product.ingredients}</p>
+                <h3>Cantidades Disponibles</h3>
+                <p>${product.quantities}</p>
+            </div>
+        `;
     }
 
-    // --- Manejo del Clic en Familia (Acordeón Múltiple) ---
+    // --- Renderizado del Detalle en Desktop ---
+    function renderDesktopDetail(product) {
+        const newHtml = generateDetailHTML(product);
+        if (placeholder) { placeholder.style.display = 'none'; }
+        detailContainer.style.opacity = 0;
+        
+        // Pequeño delay para la animación
+        setTimeout(() => { 
+            detailContainer.innerHTML = newHtml; 
+            detailContainer.style.opacity = 1; 
+            
+            // Scroll al top del contenedor por si acaso estaba scrolleado
+            detailContainer.scrollTop = 0;
+        }, 250);
+    }
+
+    // --- Renderizado del Detalle en Móvil (Modal) ---
+    function openMobileModal(product) {
+        const newHtml = generateDetailHTML(product);
+        mobileModalContent.innerHTML = newHtml;
+        mobileModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Evitar scroll del body
+    }
+
+    function closeMobileModal() {
+        mobileModal.classList.add('hidden');
+        document.body.style.overflow = ''; // Restaurar scroll
+    }
+
+    // --- Manejo del Clic en Familia (Acordeón) ---
     function handleFamilyClick(e) {
         const button = e.target.closest('.family-selector-btn');
         if (!button) return;
@@ -265,43 +297,66 @@ document.addEventListener('DOMContentLoaded',()=>{if(document.getElementById('ma
         const gridToToggle = button.nextElementSibling;
         if (!gridToToggle || !gridToToggle.classList.contains('product-grid-container')) return;
 
-        // Alternar estado del botón
         button.classList.toggle('active');
 
-        // Alternar visibilidad del grid
         if (gridToToggle.classList.contains('visible')) {
             gridToToggle.classList.remove('visible');
-            setTimeout(() => {
-                 gridToToggle.style.display = 'none';
-            }, 400); 
+            setTimeout(() => { gridToToggle.style.display = 'none'; }, 400); 
         } else {
             gridToToggle.style.display = 'grid'; 
-            setTimeout(() => {
-                gridToToggle.classList.add('visible');
-            }, 10);
+            setTimeout(() => { gridToToggle.classList.add('visible'); }, 10);
         }
     }
 
+    // --- Manejo del Clic en Producto (Lupa) ---
     function handleProductClick(e) {
         const lupaButton = e.target.closest('.lupa-button[data-action="view-product"]');
         if (!lupaButton) return;
+        
         const card = lupaButton.closest('.product-card');
         if (!card) return;
+        
         const productId = card.dataset.productId;
-        renderDetail(productId);
+        const product = productData.find(p => p.id == productId);
+        if (!product) return;
+
+        // DETECCIÓN DE PANTALLA
+        if (window.innerWidth >= 1024) {
+            renderDesktopDetail(product);
+        } else {
+            openMobileModal(product);
+        }
     }
 
     // --- Inicialización ---
     function initProductPage() {
+        // Elementos Desktop
         accordionContainer = document.getElementById('accordion-container');
         detailContainer = document.getElementById('product-detail-view');
         placeholder = document.getElementById('product-detail-placeholder');
 
-        if (!accordionContainer || !detailContainer) return;
+        // Elementos Móvil
+        mobileModal = document.getElementById('mobile-product-modal');
+        mobileModalContent = document.getElementById('mobile-modal-content');
+        closeMobileModalBtn = document.getElementById('close-mobile-modal');
 
+        if (closeMobileModalBtn) {
+            closeMobileModalBtn.addEventListener('click', closeMobileModal);
+        }
+
+        // Cerrar modal al hacer clic fuera del contenido
+        if (mobileModal) {
+            mobileModal.addEventListener('click', (e) => {
+                if (e.target === mobileModal) closeMobileModal();
+            });
+        }
+
+        if (!accordionContainer) return;
+
+        // Renderizar Familias
         families.forEach(family => {
             const familyBlock = document.createElement('div');
-            familyBlock.className = 'w-full'; 
+            familyBlock.className = 'w-full family-block'; 
 
             const button = document.createElement('button');
             button.className = 'family-selector-btn';
