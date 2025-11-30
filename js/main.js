@@ -1,6 +1,11 @@
 /* main.js - comprimido y seccional */
 /* main.js */
 
+// FUNCIÓN GLOBAL: Usada para la redirección.
+function goToProducts(url) {
+    window.location.href = url;
+}
+
 // 1. FUNCIÓN GLOBAL MENU (Accesible desde components.js)
 window.initMobileMenu = function() {
   const mobileMenu = document.getElementById('mobile-menu');
@@ -114,91 +119,122 @@ function initPageScripts() {
     });
 })();
 
-  /* 5. MINI CARRUSEL DE PRODUCTOS - 3D/CIRCULAR (REFACTORIZADO) */
+/* 5. MINI CARRUSEL DE PRODUCTOS - 3D/CIRCULAR (REFACTORIZADO) */
 (function(){
-    const TOTAL_PRODUCTS=16;
-    // MODIFICACIÓN: Se agrega la estructura del botón "Ver Producto"
-    const createProductCard=i=>`
+    const TOTAL_PRODUCTS = 6;
+    const DRAG_THRESHOLD = 40; // Umbral de 40px para considerar arrastre
+
+    // *** MODIFICACIÓN CLAVE: USAMOS onpointerup EN LUGAR DE onclick ***
+    const createProductCard = i => `
         <article class="product-card flex-shrink-0" data-index="${i}">
             <div class="card-media rounded-2xl overflow-hidden">
-                <img src="img/productos/producto-(${i+1}).png" alt="Producto ${i+1}" class="w-full h-[28rem] md:h-[32rem] object-contain transition-transform duration-700 ease-in-out transform rounded-2xl">
+                <img src="img/productos/producto-(${i+3}).png" alt="Producto ${i+3}" class="w-full h-[28rem] md:h-[32rem] object-contain transition-transform duration-700 ease-in-out transform rounded-2xl">
             </div>
             <div class="view-product-button-wrapper">
-                <button type="button" class="view-product-button">Ver producto</button>
+                <button 
+                    type="button" 
+                    class="view-product-button" 
+                    onpointerup="goToProducts('productos.html')"> 
+                    Ver producto
+                </button>
             </div>
         </article>
     `;
     
-    const root=document.getElementById('mini-carrusel-productos-wrapper'); if(!root) return;
-    const track=root.querySelector('.carousel-track'); if(!track) return;
-    track.innerHTML=Array.from({length:TOTAL_PRODUCTS},(_,i)=>createProductCard(i)).join('');
+    const root = document.getElementById('mini-carrusel-productos-wrapper'); if(!root) return;
+    const track = root.querySelector('.carousel-track'); if(!track) return;
+    track.innerHTML = Array.from({length:TOTAL_PRODUCTS}, (_,i)=>createProductCard(i)).join('');
     
-    const cards=Array.from(root.querySelectorAll('.product-card'));
-    const btnPrev=root.querySelector('#products-prev'), btnNext=root.querySelector('#products-next'), dotsWrap=root.querySelector('.carousel-dots');
-    let index=0, autoplayId=null, AUTOPLAY_MS=4200, total=cards.length;
-    if(total===0) return;
+    const cards = Array.from(root.querySelectorAll('.product-card'));
+    const btnPrev = root.querySelector('#products-prev'), btnNext = root.querySelector('#products-next'), dotsWrap = root.querySelector('.carousel-dots');
+    let index = 0, autoplayId = null, AUTOPLAY_MS = 4200, total = cards.length;
+    if(total === 0) return;
     
-    const modulo=(i,n)=>((i%n)+n)%n;
+    const modulo = (i, n) => ((i % n) + n) % n;
 
     function updateClasses(){
-        const prev=modulo(index-1,total), next=modulo(index+1,total), prevFar=modulo(index-2,total), nextFar=modulo(index+2,total);
-        cards.forEach((c,i)=>{
-            let newClass='product-card'; // Clase base
-            if(i===index){newClass+=' is-center';}
-            else if(i===prev){newClass+=' is-prev';}
-            else if(i===next){newClass+=' is-next';}
-            else if(i===prevFar){newClass+=' is-prev-far';}
-            else if(i===nextFar){newClass+=' is-next-far';}
-            else{newClass+=' is-hidden';} // Clase para las que están 'fuera de escena'
-            c.className=newClass;
-            c.dataset.index=i; // Asegurarse que el índice está
+        const prev = modulo(index - 1, total), next = modulo(index + 1, total), prevFar = modulo(index - 2, total), nextFar = modulo(index + 2, total);
+        cards.forEach((c, i) => {
+            let newClass = 'product-card';
+            if(i === index){newClass += ' is-center';}
+            else if(i === prev){newClass += ' is-prev';}
+            else if(i === next){newClass += ' is-next';}
+            else if(i === prevFar){newClass += ' is-prev-far';}
+            else if(i === nextFar){newClass += ' is-next-far';}
+            else{newClass += ' is-hidden';}
+            c.className = newClass;
+            c.dataset.index = i;
         });
-        dots.forEach((d,i)=>d.classList.toggle('active',i===index));
+        const dots = Array.from(dotsWrap.children);
+        dots.forEach((d, i) => d.classList.toggle('active', i === index));
     }
 
-    function go(i){index=modulo(i,total);updateClasses();}
-    function next(){go(index+1);}
-    function prev(){go(index-1);}
-    function startAutoplay(){stopAutoplay(); autoplayId=setInterval(next,AUTOPLAY_MS);}
-    function stopAutoplay(){if(autoplayId){clearInterval(autoplayId);autoplayId=null;}}
+    function go(i){index = modulo(i, total); updateClasses();}
+    function next(){go(index + 1);}
+    function prev(){go(index - 1);}
+    function startAutoplay(){stopAutoplay(); autoplayId = setInterval(next, AUTOPLAY_MS);}
+    function stopAutoplay(){if(autoplayId){clearInterval(autoplayId); autoplayId = null;}}
     function restartAutoplay(){stopAutoplay(); startAutoplay();}
 
-    if(btnNext) btnNext.addEventListener('click',()=>{next(); restartAutoplay();});
-    if(btnPrev) btnPrev.addEventListener('click',()=>{prev(); restartAutoplay();});
-    root.addEventListener('mouseenter',stopAutoplay); root.addEventListener('mouseleave',startAutoplay);
-    root.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){next();restartAutoplay();}if(e.key==='ArrowLeft'){prev();restartAutoplay();}});
+    if(btnNext) btnNext.addEventListener('click', () => {next(); restartAutoplay();});
+    if(btnPrev) btnPrev.addEventListener('click', () => {prev(); restartAutoplay();});
+    root.addEventListener('mouseenter', stopAutoplay); root.addEventListener('mouseleave', startAutoplay);
+    root.addEventListener('keydown', e => {if(e.key === 'ArrowRight'){next(); restartAutoplay();}if(e.key === 'ArrowLeft'){prev(); restartAutoplay();}});
 
     /* Drag/Touch Simplificado */
     (function(){
-        let isDown=false, startX=0, pointerId=null;
-        const handlePointerDown=e=>{isDown=true;track.classList.add('dragging');startX=e.clientX;try{track.setPointerCapture(e.pointerId);pointerId=e.pointerId;}catch(err){}};
-        const handlePointerMove=e=>{if(!isDown) return;e.preventDefault();};
-        const handlePointerUp=e=>{
+        let isDown = false, startX = 0, pointerId = null;
+        
+        const handlePointerDown = e => {
+            // Impedir que el botón dispare la lógica de arrastre del carrusel.
+            // Si el objetivo (e.target) es el botón, salimos y permitimos la acción.
+            if (e.target.closest('.view-product-button')) return; 
+
+            isDown = true; 
+            track.classList.add('dragging'); 
+            startX = e.clientX; 
+            try{track.setPointerCapture(e.pointerId); pointerId = e.pointerId;}catch(err){}
+        };
+        
+        const handlePointerMove = e => {
+            if(!isDown) return; 
+            e.preventDefault();
+        };
+        
+        const handlePointerUp = e => {
             if(!isDown) return;
-            isDown=false;
+            isDown = false;
             track.classList.remove('dragging');
-            try{if(pointerId) track.releasePointerCapture(pointerId);pointerId=null;}catch(err){}
-            const dx=e.clientX-startX;
-            if(Math.abs(dx)>40){dx<0?next():prev();}
+            try{if(pointerId) track.releasePointerCapture(pointerId); pointerId = null;}catch(err){}
+            
+            const dx = e.clientX - startX;
+            
+            // Si hubo arrastre significativo, mover el carrusel
+            if(Math.abs(dx) > DRAG_THRESHOLD){
+                dx < 0 ? next() : prev();
+            } 
+            
             restartAutoplay();
         };
-        track.addEventListener('pointerdown',handlePointerDown);
-        track.addEventListener('pointermove',handlePointerMove);
-        track.addEventListener('pointerup',handlePointerUp);
-        track.addEventListener('pointercancel',handlePointerUp);
+        
+        track.addEventListener('pointerdown', handlePointerDown);
+        track.addEventListener('pointermove', handlePointerMove);
+        track.addEventListener('pointerup', handlePointerUp);
+        track.addEventListener('pointercancel', handlePointerUp);
     })();
 
+
     /* Dots */
-    dotsWrap.innerHTML=''; for(let i=0;i<total;i++){const b=document.createElement('button');b.type='button'; if(i===0) b.classList.add('active'); b.addEventListener('click',()=>{go(i); restartAutoplay();}); dotsWrap.appendChild(b);}
-    const dots=Array.from(dotsWrap.children);
+    dotsWrap.innerHTML = ''; for(let i = 0; i < total; i++){const b = document.createElement('button');b.type = 'button'; if(i === 0) b.classList.add('active'); b.addEventListener('click', () => {go(i); restartAutoplay();}); dotsWrap.appendChild(b);}
+    const dots = Array.from(dotsWrap.children);
 
     /* esperar cargas de imagen */
-    const imgs=root.querySelectorAll('img'); let loaded=0;
-    const initCarousel=()=>{if(loaded===imgs.length||imgs.length===0){go(0);startAutoplay();updateClasses();}else{loaded++;}};
-    if(imgs.length===0){initCarousel();}
-    else{imgs.forEach(img=>{if(img.complete){initCarousel();}else{img.addEventListener('load',initCarousel);img.addEventListener('error',initCarousel);}});}
-    window.addEventListener('load',()=>go(0));
-    setTimeout(()=>go(0),500); // Fallback por si acaso
+    const imgs = root.querySelectorAll('img'); let loaded = 0;
+    const initCarousel = () => {if(loaded === imgs.length || imgs.length === 0){go(0); startAutoplay(); updateClasses();}else{loaded++;}};
+    if(imgs.length === 0){initCarousel();}
+    else{imgs.forEach(img => {if(img.complete){initCarousel();}else{img.addEventListener('load', initCarousel); img.addEventListener('error', initCarousel);}});}
+    window.addEventListener('load', () => go(0));
+    setTimeout(() => go(0), 500);
 })();
 
   /* 6. SOCIAL EMBEDS */

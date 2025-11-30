@@ -60,8 +60,31 @@ html,body{background:#fff;overflow-x:clip}
     line-height: 1.8;
 }
 #home-cta {
-    /* Fondo para el CTA final de la Home */
-    background-image: url('../img/fachada.jpg'); /* Reemplaza con una imagen de ventas/distribución */
+    /* 1. Imagen y Ruta */
+    background-image: url('../img/fachada.jpg');
+    
+    /* 2. Propiedades Esenciales para Parallax */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* <--- Propiedad Parallax */
+    
+    /* 3. Visibilidad de la Sección */
+    min-height: 400px; /* Asegura que la sección tenga suficiente altura para ver el efecto */
+    position: relative; /* Necesario para que el contenido se apile sobre el fondo/overlay */
+    
+    /* 4. Alineación de Contenido */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 0; 
+}
+
+/* DESACTIVAR PARALLAX EN MÓVIL (Mejora de Rendimiento) */
+@media (max-width: 768px) {
+    #home-cta {
+        background-attachment: scroll; 
+    }
 }
 @media (max-width: 768px) {
     .home-section-title {
@@ -239,15 +262,116 @@ transform: translate(0, 0);
 .contact-social-card{display:flex;align-items:center;justify-content:center;background:#FFF;padding:1.5rem;border-radius:1rem;box-shadow:0 4px 12px rgba(195, 0, 0, 0.1);transition:transform 0.3s ease, box-shadow 0.3s ease}
 .contact-social-card:hover{transform:translateY(-8px);box-shadow:0 8px 20px rgba(195, 0, 0, 0.2)}
 .contact-social-icon{width:4rem;height:4rem}
+/* Hero Contacto - Estilo Estático (Sin Parallax) */
+#hero-contacto {
+    width: 100%;
+    height: 450px;
+    position: relative;
+    overflow: hidden;
+    
+    /* Configuración de Imagen */
+    background-image: url('../img/hero.jpg'); /* Verifica tu ruta */
+    background-size: cover; /* Asegura que cubra todo el fondo */
+    background-position: center center; /* Centra la imagen */
+    background-repeat: no-repeat;
+    
+    /* NOTA: Hemos quitado 'background-attachment: fixed' para eliminar el Parallax.
+       Ahora la imagen se mueve naturalmente con la sección. */
+    
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
 
-/* Hero Contacto */
-#hero-contacto{width:100%;height:450px;position:relative;overflow:hidden;background-image:url('../img/fachada.jpg');background-size:cover;background-position:center 30%;background-repeat:no-repeat;display:flex;align-items:center;justify-content:flex-start}
-#hero-contacto::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0, 0, 0, 0.60);z-index:1}
-.hero-content{position:relative;z-index:2;width:100%;text-align:left;padding-left:55%}
-.hero-title{font-size:4.5rem;font-weight:700;color:#fff;text-shadow:0 4px 6px rgba(0, 0, 0, 0.5);opacity:0;transform:translateY(20px);animation:fadeInTitle 1s ease-out 0.3s forwards}
-@keyframes fadeInTitle{to{opacity:1;transform:translateY(0)}}
-@media (max-width: 768px){#hero-contacto{height:450px;justify-content:center;background-position:center center}#hero-contacto .hero-content{width:90%;text-align:center;padding-left:0}#hero-contacto .hero-title{font-size:3rem}}
+/* Overlay con gradiente suave */
+#hero-contacto::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%);
+    z-index: 1;
+}
 
+/* Contenedor del texto */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    text-align: left;
+    padding-left: 55%; 
+    padding-right: 5%;
+}
+
+/* Título Animado */
+.hero-title {
+    font-family: 'Fluffy', sans-serif;
+    font-size: 5rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.1;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    
+    opacity: 0;
+    transform: translateY(40px);
+    animation: heroReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+    
+    position: relative;
+    display: inline-block;
+    padding-bottom: 12px; /* Espacio extra para la línea */
+}
+
+/* Línea amarilla decorativa (Ajustada) */
+.hero-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0px; /* Pegado al padding-bottom de 12px */
+    left: 0;
+    width: 0%;
+    height: 6px;
+    background-color: #fab32e; /* Amarillo Arichuna */
+    border-radius: 4px;
+    /* Animación más larga y con un delay más notorio */
+    animation: underlineExpand 1.2s ease-out 0.8s forwards; 
+}
+
+/* Keyframes */
+@keyframes heroReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes underlineExpand {
+    to {
+        width: 60%;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #hero-contacto {
+        height: 400px;
+        justify-content: center;
+        background-position: center center;
+    }
+    .hero-content {
+        width: 100%;
+        text-align: center;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    .hero-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
 /* Inputs del Formulario: Texto Vinotinto, Focus Rojo */
 .form-input{border:2px solid #D1D5DB;padding:0.75rem 1.25rem;font-size:1rem;line-height:1.5;color:#6e5151;background-color:#fff;width:100%;border-radius:1.5rem;transition:border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out}
 .form-input:focus{outline:none;border-color:#c30000;box-shadow:0 0 0 3px rgba(195, 0, 0, 0.2)}
@@ -258,6 +382,35 @@ transform: translate(0, 0);
 #info-band{position:relative;overflow:hidden;background-image:url('../img/REDES-2.jpg');background-attachment:fixed;background-position:center center;background-repeat:no-repeat;background-size:cover}
 .info-band-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0, 0, 0, 0.65);z-index:1}
 
+/* Ajuste Responsivo para la banda de información */
+@media (max-width: 768px) {
+    #info-band .grid {
+        /* Fuerza a que el grid actúe como una columna centralizada */
+        grid-template-columns: 1fr;
+        gap: 3rem; /* Aumenta la separación vertical */
+    }
+    
+    #info-band .flex.items-center {
+        /* Centra el contenido de cada tarjeta de info */
+        justify-content: center !important;
+    }
+    
+    /* Centra el texto dentro de la caja de info */
+    #info-band .text-left {
+        text-align: center !important;
+    }
+    
+    /* Alinear icono y texto */
+    #info-band .h-16 {
+        margin-right: 0 !important; /* Elimina margen derecho en móvil */
+        margin-bottom: 0.5rem; /* Añade margen inferior para separar el icono del texto centrado */
+    }
+    
+    /* Cambia de fila para forzar el centrado del texto */
+    #info-band .flex.items-center {
+        flex-direction: column; 
+    }
+}
 /* Mapa: Borde Rojo y Sombra Roja */
 .map-container{position:relative;width:100%;aspect-ratio:16 / 9;border-radius:1.5rem;overflow:hidden;border:2px solid #c30000;box-shadow:0 0 0 3px rgba(195, 0, 0, 0.2)}
 .map-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
@@ -300,6 +453,67 @@ transform: translate(0, 0);
 .map-btn.active {
     background: #c30000;
     color: #fff;
+}
+
+/* Contenedor Responsivo para Scroll de Botones */
+.map-btn-scroll-wrapper {
+    /* Por defecto, no hace nada en PC */
+    width: 100%;
+}
+
+/* Botones: Estilo */
+.map-btn {
+    background: #fff;
+    border: 2px solid #c30000;
+    padding: 0.5rem 1.1rem;
+    font-size: 1rem;
+    border-radius: 9999px;
+    transition: 0.3s ease;
+    font-weight: 600;
+    color: #c30000;
+}
+
+.map-btn:hover {
+    background: #c30000;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.map-btn.active {
+    background: #c30000;
+    color: #fff;
+}
+
+/* RESPONSIVO: Solución FINAL para Botones de Mapa (Centrado en PC, Scroll completo en Móvil) */
+@media (max-width: 640px) {
+    
+    .map-btn-scroll-final {
+        /* Compensación: 100% de la caja padre + 1rem (padding izquierdo) + 1rem (padding derecho) */
+        width: calc(100% + 2rem); 
+        
+        /* Mueve el contenedor 1rem a la izquierda para anular el padding del contenedor padre (px-4) */
+        margin-left: -1rem; 
+        
+        overflow-x: scroll; /* Habilita el desplazamiento */
+        
+        /* El padding de 1rem que eliminamos con el margen lo reponemos aquí para que los botones no toquen el borde */
+        padding: 0 1rem 0.5rem; 
+        
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    
+    .map-btn-scroll-final::-webkit-scrollbar {
+        display: none; /* Oculta la barra de scroll */
+    }
+    
+    .map-btn-scroll-final .flex {
+        flex-wrap: nowrap; /* Evita que los botones salten de línea */
+    }
+    
+    .map-btn {
+        flex-shrink: 0; /* Evita que los botones se achiquen */
+    }
 }
 
 /* 10. PAGINA PRODUCTOS (HERO) */
@@ -553,7 +767,7 @@ transform: translate(0, 0);
 
 /* 12. CTA A RECETARIO (CON PARALLAX) */
 /* (Este bloque pertenece a la página de PRODUCTOS, pero lo mantenemos) */
-#productos-cta-recetario{position:relative;padding:6rem 2rem;background-image:url('img/recetas/pan.png');background-attachment:fixed;background-position:center center;background-size:cover}
+#productos-cta-recetario{position:relative;padding:6rem 2rem;background-image:url('../img/parallax1.jpg');background-attachment:fixed;background-position:center center;background-size:cover}
 .productos-parallax-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(195, 0, 0, 0.65);z-index:1}
 
 /* 14. PÁGINA DE VENTAS */
@@ -564,8 +778,8 @@ transform: translate(0, 0);
 .ventas-options-container{display:grid;grid-template-columns:1fr}
 @media (min-width: 1024px){.ventas-options-container{grid-template-columns:1fr 1fr}}
 .ventas-option-card{position:relative;padding:6rem 2rem;min-height:70vh;display:flex;align-items:center;justify-content:center;background-size:cover;background-position:center;overflow:hidden}
-#ventas-opcion-vender{background-image:url('../img/recetas/salchicha.jpg')}
-#ventas-opcion-distribuir{background-image:url('../img/recetas/pasta.jpeg')}
+#ventas-opcion-vender{background-image:url('../img/fondo-ventas.jpg')}
+#ventas-opcion-distribuir{background-image:url('../img/fondo-ventas1.jpg')}
 .ventas-option-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0, 0, 0, 0.5);z-index:1}
 .ventas-option-content{position:relative;z-index:2;max-width:420px;text-align:center;padding:2.5rem;border-radius:1rem;background:rgba(255, 255, 255, 0.85);backdrop-filter:blur(10px);border:1px solid rgba(255, 255, 255, 0.4);box-shadow:0 10px 30px rgba(0, 0, 0, 0.2);transform:scale(1);transition:transform 0.4s ease, box-shadow 0.4s ease}
 .ventas-option-card:hover .ventas-option-content{transform:scale(1.05);box-shadow:0 15px 40px rgba(0, 0, 0, 0.25)}
@@ -622,8 +836,8 @@ transform: translate(0, 0);
 #hero-nosotros-page::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0, 0, 0, 0.60);z-index:1}
 .nosotros-section-title{font-family:'Fluffy',sans-serif;font-size:3.5rem;font-weight:500;color:#fab32e}
 .nosotros-body-text{font-family:'Montserrat',sans-serif;font-size:1.125rem;color:#6e5151;line-height:1.8}
-.nosotros-history-image{width:100%;height:auto;border-radius:1rem;object-fit:cover;aspect-ratio:4 / 3}
-.nosotros-mv-parallax{position:relative;padding:4rem 0;background-image:url('../img/recetas/pasta.jpeg');background-attachment:fixed;background-position:center center;background-size:cover}
+.nosotros-history-image{width:100%;height: 38rem;;border-radius:1rem;object-fit:cover;aspect-ratio:4 / 3}
+.nosotros-mv-parallax{position:relative;padding:4rem 0;background-image:url('../img/parallax.jpg');background-attachment:fixed;background-position:center center;background-size:cover}
 .nosotros-mv-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(195, 0, 0, 0.85);z-index:1}
 .nosotros-mv-title{font-family:'Fluffy',sans-serif;font-size:3rem;color:#FFFFFF;margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:3px solid #fab32e;display:inline-block}
 .nosotros-mv-text{font-family:'Montserrat',sans-serif;font-size:1.125rem;line-height:1.8;color:#FFF}
@@ -631,7 +845,7 @@ transform: translate(0, 0);
 .news-card{background-color:#fff;border-radius:1rem;overflow:hidden;transition:transform 0.3s ease;border-color: rgba(195, 0, 0, 0.85);}
 .news-card:hover{transform:translateY(-8px)}
 .news-card-link{text-decoration:none;display:block}
-.news-image-container{width:100%;aspect-ratio:16 / 9;overflow:hidden}
+.news-image-container{width:100%;aspect-ratio:11 / 9;overflow:hidden}
 .news-image{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease}
 .news-card:hover .news-image{transform:scale(1.05)}
 .news-content{padding:1.75rem}
