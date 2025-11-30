@@ -260,56 +260,76 @@ if (document.readyState === 'loading') {
   initPageScripts();
 }
 
-/* 11. LÓGICA DE PÁGINA DE PRODUCTOS (MODAL MÓVIL + FIX DESKTOP) */
+/* 11. LÓGICA DE PÁGINA DE PRODUCTOS (FICHA TÉCNICA VERÍDICA) */
 (function() {
 
     // --- 1. Base de Datos ---
     const families = [
-        { id: 1, name: "Jamones", icon: "img/ubicacion.png" },
+        { id: 1, name: "Jamones y Fiambres", icon: "img/ubicacion.png" },
         { id: 2, name: "Ahumados", icon: "img/ubicacion.png" },
         { id: 3, name: "Salchichas", icon: "img/ubicacion.png" },
         { id: 4, name: "Mortadelas", icon: "img/ubicacion.png" } 
     ];
 
+    // Nuevos campos: pesoNeto, unidadesCaja, pesoBruto, vidaUtil
     const productData = [
         // FAMILIA 1: JAMONES
-        { id: 1, name: "Producto 1", image: "img/productos/producto-(1).png", family: 1, ingredients: "Ingrediente A...", quantities: "100g..." },
-        { id: 2, name: "Producto 2", image: "img/productos/producto-(2).png", family: 1, ingredients: "Ingrediente A...", quantities: "100g..." },
-        { id: 3, name: "Producto 3", image: "img/productos/producto-(3).png", family: 1, ingredients: "Ingrediente A...", quantities: "100g..." },
-        { id: 4, name: "Producto 4", image: "img/productos/producto-(4).png", family: 1, ingredients: "Ingrediente A...", quantities: "100g..." },
-        
+        { id: 1, name: "Jamón Cocido Superior", image: "img/productos/producto-(8).png", family: 1, pesoNeto: "5,82 Kg", unidadesCaja: "4 Unidades", pesoBruto: "23,8 Kg aprox.", vidaUtil: "6 meses" },
+        { id: 2, name: "Espalda Cocida", image: "img/productos/producto-(1).png", family: 1, pesoNeto: "5,14 Kg", unidadesCaja: "4 Unidades", pesoBruto: "20,56 Kg aprox.", vidaUtil: "6 meses" },
+        { id: 3, name: "Espalda Cocida Ahumada Shoulder", image: "img/productos/producto-(13).png", family: 1, pesoNeto: "5,22 Kg", unidadesCaja: "4 Unidades", pesoBruto: "19,05-22 Kg aprox.", vidaUtil: "6 meses" },
+        { id: 4, name: "Jamón Ahumado Tender", image: "img/productos/producto-(14).png", family: 1, pesoNeto: "1 Kg", unidadesCaja: "14 Unidades", pesoBruto: "16 Kg", vidaUtil: "6 meses" },
+        { id: 5, name: "Fiambre de Carne", image: "img/productos/producto-(2).png", family: 1, pesoNeto: "5,10 Kg", unidadesCaja: "4 Unidades", pesoBruto: "20,40 Kg", vidaUtil: "6 meses" },
+        //{ id: 6, name: "Salchicha Cocida Sup. Tipo Bologna", image: "img/productos/producto-(14).png", family: 1, pesoNeto: "1 Kg", unidadesCaja: "14 Unidades", pesoBruto: "16 Kg", vidaUtil: "6 meses" },
+
         // FAMILIA 2: AHUMADOS
-        { id: 5, name: "Producto 5", image: "img/productos/producto-(5).png", family: 2, ingredients: "Ingrediente A...", quantities: "100g..." },
-        { id: 6, name: "Producto 6", image: "img/productos/producto-(6).png", family: 2, ingredients: "Ingrediente D...", quantities: "1L..." },
-        { id: 7, name: "Producto 7", image: "img/productos/producto-(7).png", family: 2, ingredients: "Ingrediente D...", quantities: "1L..." },
-        { id: 8, name: "Producto 8", image: "img/productos/producto-(8).png", family: 2, ingredients: "Ingrediente D...", quantities: "1L..." },
+        { id: 7, name: "Tocineta Ahumada de Cerdo", image: "img/productos/producto-(15).png", family: 2, pesoNeto: "3,11 Kg", unidadesCaja: "4 Unidades", pesoBruto: "9-20 Kg aprox.", vidaUtil: "4 Días" },
+        { id: 8, name: "Tocineta Ahumada Enrrollada Tipo Danés", image: "img/productos/producto-(16).png", family: 2, pesoNeto: "1,6 Kg", unidadesCaja: "6 Unidades", pesoBruto: "5,5-9,5 Kg aprox.", vidaUtil: "60 Días" },
+        { id: 9, name: "Lomo Ahumado de Cerdo", image: "img/productos/producto-(3).png", family: 2, pesoNeto: "1,66 Kg", unidadesCaja: "6 Unidades", pesoBruto: "4,1-9 Kg aprox.", vidaUtil: "4 meses" },
+        //{ id: 10, name: "Chuleta Ahumada de Cerdo", image: "img/productos/producto-(8).png", family: 2, pesoNeto: "800 g", unidadesCaja: "12 Unidades", pesoBruto: "10.0 Kg", vidaUtil: "60 Días" },
         
         // FAMILIA 3: SALCHICHAS
-        { id: 9, name: "Producto 9", image: "img/productos/producto-(9).png", family: 3, ingredients: "Ingrediente D...", quantities: "1L..." },
-        { id: 10, name: "Producto 10", image: "img/productos/producto-(10).png", family: 3, ingredients: "Ingrediente D...", quantities: "1L..." },
-        { id: 11, name: "Producto 11", image: "img/productos/producto-(11).png", family: 3, ingredients: "Ingrediente F...", quantities: "Paquete..." },
-        { id: 12, name: "Producto 12", image: "img/productos/producto-(12).png", family: 3, ingredients: "Ingrediente F...", quantities: "Paquete..." },
+        { id: 11, name: "Salchichas 1", image: "img/productos/producto-(9).png", family: 3, pesoNeto: "400 g", unidadesCaja: "24 Paquetes", pesoBruto: "10.0 Kg aprox.", vidaUtil: "45 Días" },
+        { id: 12, name: "Salchichas 2", image: "img/productos/producto-(10).png", family: 3, pesoNeto: "400 g", unidadesCaja: "24 Paquetes", pesoBruto: "10.0 Kg aprox.", vidaUtil: "45 Días" },
+        { id: 13, name: "Salchichas 3", image: "img/productos/producto-(11).png", family: 3, pesoNeto: "800 g", unidadesCaja: "12 Paquetes", pesoBruto: "10.0 Kg aprox.", vidaUtil: "45 Días" },
+        { id: 14, name: "Salchichas 4", image: "img/productos/producto-(12).png", family: 3, pesoNeto: "250 g", unidadesCaja: "30 Paquetes", pesoBruto: "8.0 Kg aprox.", vidaUtil: "45 Días" },
         
         // FAMILIA 4: MORTADELAS
-        { id: 13, name: "Producto 13", image: "img/productos/producto-(13).png", family: 4, ingredients: "Ingrediente F...", quantities: "Paquete..." },
-        { id: 14, name: "Producto 14", image: "img/productos/producto-(14).png", family: 4, ingredients: "Ingrediente F...", quantities: "Paquete..." },
-        { id: 15, name: "Producto 15", image: "img/productos/producto-(15).png", family: 4, ingredients: "Ingrediente F...", quantities: "Paquete..." },
-        { id: 16, name: "Producto 16", image: "img/productos/producto-(16).png", family: 4, ingredients: "Ingrediente F...", quantities: "Paquete..." }
+        { id: 15, name: "Mortadela Especial 1Kg", image: "img/productos/producto-(4).png", family: 4, pesoNeto: "1 Kg", unidadesCaja: "24 Piezas", pesoBruto: "24 Kg aprox", vidaUtil: "6 meses" },
+        { id: 16, name: "Mortadela Especial 5Kg", image: "img/productos/producto-(5).png", family: 4, pesoNeto: "4,20 Kg", unidadesCaja: "4 Piezas", pesoBruto: "16,80 Kg aprox.", vidaUtil: "3 meses" },
+        { id: 17, name: "Mortadela Extra", image: "img/productos/producto-(6).png", family: 4, pesoNeto: "4 Kg", unidadesCaja: "16 Piezas", pesoBruto: "10.5 Kg", vidaUtil: "3 meses" },
+        { id: 18, name: "Mortadela Extra Tapara con Pistacho", image: "img/productos/producto-(7).png", family: 4, pesoNeto: "2,9 Kg", unidadesCaja: "4 Piezas", pesoBruto: "12 Kg aprox.", vidaUtil: "3 meses" }
     ];
 
     let accordionContainer, detailContainer, placeholder;
     let mobileModal, mobileModalContent, closeMobileModalBtn;
 
-    // --- Generar HTML del Detalle (Reutilizable) ---
+    // --- Generar HTML del Detalle (Ficha Técnica Limpia) ---
     function generateDetailHTML(product) {
         return `
             <div class="product-detail-content">
                 <img src="${product.image}" alt="${product.name}" class="detail-image">
                 <h2>${product.name}</h2>
-                <h3>Ingredientes</h3>
-                <p>${product.ingredients}</p>
-                <h3>Cantidades Disponibles</h3>
-                <p>${product.quantities}</p>
+                
+                <div class="spec-separator"></div>
+
+                <div class="grid grid-cols-2 gap-y-6 gap-x-4 text-left px-2">
+                    <div class="spec-item">
+                        <h3>Peso Neto</h3>
+                        <p>${product.pesoNeto}</p>
+                    </div>
+                    <div class="spec-item">
+                        <h3>Unid. x Caja</h3>
+                        <p>${product.unidadesCaja}</p>
+                    </div>
+                    <div class="spec-item">
+                        <h3>Peso Bruto Caja</h3>
+                        <p>${product.pesoBruto}</p>
+                    </div>
+                    <div class="spec-item">
+                        <h3>Vida Útil</h3>
+                        <p>${product.vidaUtil}</p>
+                    </div>
+                </div>
             </div>
         `;
     }
@@ -320,12 +340,9 @@ if (document.readyState === 'loading') {
         if (placeholder) { placeholder.style.display = 'none'; }
         detailContainer.style.opacity = 0;
         
-        // Pequeño delay para la animación
         setTimeout(() => { 
             detailContainer.innerHTML = newHtml; 
             detailContainer.style.opacity = 1; 
-            
-            // Scroll al top del contenedor por si acaso estaba scrolleado
             detailContainer.scrollTop = 0;
         }, 250);
     }
@@ -335,12 +352,12 @@ if (document.readyState === 'loading') {
         const newHtml = generateDetailHTML(product);
         mobileModalContent.innerHTML = newHtml;
         mobileModal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // Evitar scroll del body
+        document.body.style.overflow = 'hidden'; 
     }
 
     function closeMobileModal() {
         mobileModal.classList.add('hidden');
-        document.body.style.overflow = ''; // Restaurar scroll
+        document.body.style.overflow = ''; 
     }
 
     // --- Manejo del Clic en Familia (Acordeón) ---
@@ -374,7 +391,6 @@ if (document.readyState === 'loading') {
         const product = productData.find(p => p.id == productId);
         if (!product) return;
 
-        // DETECCIÓN DE PANTALLA
         if (window.innerWidth >= 1024) {
             renderDesktopDetail(product);
         } else {
@@ -384,12 +400,9 @@ if (document.readyState === 'loading') {
 
     // --- Inicialización ---
     function initProductPage() {
-        // Elementos Desktop
         accordionContainer = document.getElementById('accordion-container');
         detailContainer = document.getElementById('product-detail-view');
         placeholder = document.getElementById('product-detail-placeholder');
-
-        // Elementos Móvil
         mobileModal = document.getElementById('mobile-product-modal');
         mobileModalContent = document.getElementById('mobile-modal-content');
         closeMobileModalBtn = document.getElementById('close-mobile-modal');
@@ -398,7 +411,6 @@ if (document.readyState === 'loading') {
             closeMobileModalBtn.addEventListener('click', closeMobileModal);
         }
 
-        // Cerrar modal al hacer clic fuera del contenido
         if (mobileModal) {
             mobileModal.addEventListener('click', (e) => {
                 if (e.target === mobileModal) closeMobileModal();
@@ -407,7 +419,6 @@ if (document.readyState === 'loading') {
 
         if (!accordionContainer) return;
 
-        // Renderizar Familias
         families.forEach(family => {
             const familyBlock = document.createElement('div');
             familyBlock.className = 'w-full family-block'; 

@@ -306,7 +306,7 @@ transform: translate(0, 0);
 #hero-productos{width:100%;height:450px;position:relative;overflow:hidden;background-image:url('../img/fachada.jpg');background-size:cover;background-position:center 30%;background-repeat:no-repeat;display:flex;align-items:center;justify-content:flex-start}
 #hero-productos::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0, 0, 0, 0.60);z-index:1}
 @media (max-width: 768px){#hero-productos{height:450px;justify-content:center;background-position:center center}#hero-productos .hero-content{width:90%;text-align:center;padding-left:0}#hero-productos .hero-title{font-size:3rem}}
-/* 11. SECCIÓN DE PRODUCTOS (COLOR NARANJA Y FONDOS BLANCOS) */
+/* 11. SECCIÓN DE PRODUCTOS */
 
 /* Estilos de Texto Intro y Títulos */
 .product-page-title{font-family:'Fluffy',sans-serif;font-size:3.5rem;font-weight:700;color:#fab32e;margin-bottom:2rem}
@@ -324,14 +324,13 @@ transform: translate(0, 0);
     width: 100%; position: relative; z-index: 10;
 }
 .product-section-container .family-selector-btn img {width: 3rem; height: 3rem; margin-right: 1rem; transition: transform 0.3s ease;}
-.product-section-container .family-selector-btn span {font-size: 1.25rem; font-weight: 600; color: #640202; /* Vinotinto */}
+.product-section-container .family-selector-btn span {font-size: 1.25rem; font-weight: 600; color: #640202;}
 
-/* Hover: Naranja */
+/* Hover & Active */
 .product-section-container .family-selector-btn:hover {
     border-color: #fab32e; background-color: rgba(250, 179, 46, 0.1); 
     box-shadow: 0 4px 10px rgba(250, 179, 46, 0.2);
 }
-/* Activo: Naranja */
 .product-section-container .family-selector-btn.active {
     border-color: #fab32e; background-color: rgba(250, 179, 46, 0.1); 
     border-radius: 1rem; margin-bottom: 1.5rem; box-shadow: 0 4px 12px rgba(250, 179, 46, 0.25);
@@ -357,7 +356,7 @@ transform: translate(0, 0);
 }
 .product-section-container .product-card:hover {
     transform: translateY(-5px) !important;
-    box-shadow: 0 10px 20px rgba(220, 38, 38, 0.25); /* Sombra Roja */
+    box-shadow: 0 10px 20px rgba(220, 38, 38, 0.25);
 }
 .product-section-container .product-card-image-wrapper {
     position: relative; width: 100%; padding-top: 100%; 
@@ -374,14 +373,13 @@ transform: translate(0, 0);
 .product-section-container .lupa-button img{width:2rem;height:2rem;filter:brightness(0) invert(1)}
 .product-section-container .lupa-button:hover{transform:scale(1.15)}
 
-/* --- ESTILOS DE FICHA TÉCNICA (MODIFICADO PARA SCROLL) --- */
+/* --- ESTILOS DE FICHA TÉCNICA (MODIFICADO) --- */
 
-/* Fix para Desktop: Limita la altura y permite scroll interno */
+/* Contenedor Scrollable Desktop */
 #product-detail-view {
     transition: opacity 0.3s ease-in-out;
-    max-height: calc(100vh - 8rem); /* Altura máxima viewport - header */
-    overflow-y: auto; /* Permite scroll si el contenido es largo */
-    /* Estilizado del scrollbar para que sea sutil */
+    max-height: calc(100vh - 8rem);
+    overflow-y: auto;
     scrollbar-width: thin; 
     scrollbar-color: #fab32e #f1f1f1;
 }
@@ -392,27 +390,71 @@ transform: translate(0, 0);
 .product-detail-content{opacity:0;animation:productFadeIn 0.5s ease forwards}
 .product-detail-content img.detail-image{width:100%;aspect-ratio:1 / 1;object-fit:contain;border-radius:0.75rem;margin-bottom:1rem;border:1px solid #E5E7EB}
 
-/* Títulos y textos Vinotinto/Naranja */
-.product-detail-content h2{font-size:1.75rem;font-weight:700;color:#640202;margin-bottom:1rem}
-.product-detail-content h3{font-size:1.125rem;font-weight:600;color:#fab32e;margin-top:1.5rem;margin-bottom:0.5rem;border-bottom:2px solid rgba(250, 179, 46, 0.3);padding-bottom:0.25rem}
-.product-detail-content p{font-size:1rem;color:#6e5151;line-height:1.6}
+/* Títulos y textos de la Ficha */
+.product-detail-content h2 {
+    font-size:1.75rem; font-weight:700; color:#640202; margin-bottom:1.5rem; text-align: center;
+}
 
-/* --- ESTILOS DEL MODAL MÓVIL (NUEVO) --- */
+/* Estilos para los items de la ficha (H3 para titulo, P para valor) */
+.product-detail-content .spec-item h3 {
+    font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;
+    font-weight: 700; color: #fab32e; margin-bottom: 0.25rem;
+}
+.product-detail-content .spec-item p {
+    font-size: 1.1rem; font-weight: 600; color: #6e5151; line-height: 1.4;
+}
+/* Separador sutil */
+.product-detail-content .spec-separator {
+    border-top: 1px dashed #e5e7eb; margin: 1.5rem 0;
+}
+
+/* --- ESTILOS DEL MODAL MÓVIL --- */
 #mobile-product-modal {
-    background-color: rgba(255, 255, 255, 0.98); /* Fondo casi opaco */
+    background-color: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(5px);
 }
 #mobile-modal-content .product-detail-content {
     text-align: center;
-    opacity: 1; /* Forzar opacidad en móvil */
+    opacity: 1; 
 }
 #mobile-modal-content img.detail-image {
     max-width: 250px;
     margin: 0 auto 1.5rem auto;
 }
+/* Ajuste de grid para móvil */
+#mobile-modal-content .grid {
+    text-align: left; /* Alinear texto a la izquierda en el grid móvil también */
+    padding: 0 1rem;
+}
 
+.btn-catalogo-red {
+  display: block;             /* Comportamiento de bloque para permitir margenes auto */
+  width: fit-content;         /* El ancho se ajusta al texto */
+  margin: 0 auto 3rem auto; /* Centrado horizontalmente (auto) y margen superior */
+  padding: 0.6rem 1.5rem;     /* Tamaño compacto */
+  
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  
+  color: #ffffff;
+  background-color: #c30000; /* Rojo Marca */
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-catalogo-red:hover {
+  background-color: #fab32e; /* Amarillo Marca */
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(250, 179, 46, 0.3);
+}
 @keyframes productFadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
 /* 12. PÁGINA DE RECETARIO (ESTILOS COMPLETOS Y CORREGIDOS) */
 
 /* ---- 1. Cabecera (Hero) ---- */
