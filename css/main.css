@@ -44,6 +44,16 @@ html,body{background:#fff;overflow-x:clip}
 .nav-item {display: inline-block;color: #ffffff !important;font-size: 1.125rem;font-weight: 700;padding: 1rem;transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-bottom-color 0.3s ease;border-bottom: 3px solid transparent;}
 .nav-highlight, .nav-item:hover {border-bottom-color: #dc2626 !important;transform: translateY(-4px);box-shadow: 6px 0 12px -4px rgba(255, 1, 1, 0.212), -6px 0 12px -4px rgba(255, 0, 0, 0.212);background: rgba(255, 255, 255, 0.1); border-radius: 4px;}
 
+/* 5. CARRUSEL: transiciones, texto y CURVA SUAVE */
+#carousel-container{position:relative;overflow:hidden;width:100%;border-bottom-left-radius:50% 50px;border-bottom-right-radius:50% 50px}
+#carousel-slides,.slide-content img{border-bottom-left-radius:inherit;border-bottom-right-radius:inherit}
+.carousel-nav-btn{opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
+#carousel-container:hover .carousel-nav-btn{opacity:1;pointer-events:auto}
+#carousel-container:hover #prev-button,#carousel-container:hover #next-button{transform:translateY(-50%) translateX(0)}
+.slide-content .text-fade-in{opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s}
+.slide-content.is-active .text-fade-in{opacity:1;transform:translateY(0)}
+#mobile-menu{transition:opacity .3s;opacity:0;pointer-events:none}#mobile-menu.active{opacity:1;pointer-events:auto}
+
 
 /* 6. HOME PAGE - SECCIONES */
 /* (Esta sección reemplaza los estilos antiguos de #recetario-descanso y #sobre-nosotros) */

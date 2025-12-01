@@ -121,14 +121,14 @@ function initPageScripts() {
 
 /* 5. MINI CARRUSEL DE PRODUCTOS - 3D/CIRCULAR (REFACTORIZADO) */
 (function(){
-    const TOTAL_PRODUCTS = 6;
+    const TOTAL_PRODUCTS = 8;
     const DRAG_THRESHOLD = 40; // Umbral de 40px para considerar arrastre
 
     // *** MODIFICACIÓN CLAVE: USAMOS onpointerup EN LUGAR DE onclick ***
     const createProductCard = i => `
         <article class="product-card flex-shrink-0" data-index="${i}">
             <div class="card-media rounded-2xl overflow-hidden">
-                <img src="img/productos/producto-(${i+3}).png" alt="Producto ${i+3}" class="w-full h-[28rem] md:h-[32rem] object-contain transition-transform duration-700 ease-in-out transform rounded-2xl">
+                <img src="img/productos/producto-(${i+2}).png" alt="Producto ${i+2}" class="w-full h-[28rem] md:h-[32rem] object-contain transition-transform duration-700 ease-in-out transform rounded-2xl">
             </div>
             <div class="view-product-button-wrapper">
                 <button 
@@ -324,10 +324,10 @@ if (document.readyState === 'loading') {
         //{ id: 10, name: "Chuleta Ahumada de Cerdo", image: "img/productos/producto-(8).png", family: 2, pesoNeto: "800 g", unidadesCaja: "12 Unidades", pesoBruto: "10.0 Kg", vidaUtil: "60 Días" },
         
         // FAMILIA 3: SALCHICHAS
-        { id: 11, name: "Salchichas 1", image: "img/productos/producto-(9).png", family: 3, pesoNeto: "400 g", unidadesCaja: "24 Paquetes", pesoBruto: "10.0 Kg aprox.", vidaUtil: "45 Días" },
-        { id: 12, name: "Salchichas 2", image: "img/productos/producto-(10).png", family: 3, pesoNeto: "400 g", unidadesCaja: "24 Paquetes", pesoBruto: "10.0 Kg aprox.", vidaUtil: "45 Días" },
-        { id: 13, name: "Salchichas 3", image: "img/productos/producto-(11).png", family: 3, pesoNeto: "800 g", unidadesCaja: "12 Paquetes", pesoBruto: "10.0 Kg aprox.", vidaUtil: "45 Días" },
-        { id: 14, name: "Salchichas 4", image: "img/productos/producto-(12).png", family: 3, pesoNeto: "250 g", unidadesCaja: "30 Paquetes", pesoBruto: "8.0 Kg aprox.", vidaUtil: "45 Días" },
+        { id: 11, name: "Salchicha Tipo Viena (Corta)", image: "img/productos/producto-(9).png", family: 3, pesoNeto: "225 gr", unidadesCaja: "22 Paquetes", pesoBruto: "5 Kg aprox.", vidaUtil: "3 meses" },
+        { id: 12, name: "Salchicha Tipo Viena (Corta)", image: "img/productos/producto-(10).png", family: 3, pesoNeto: "450 gr", unidadesCaja: "12 Paquetes", pesoBruto: "5,4 Kg aprox.", vidaUtil: "3 meses" },
+        { id: 13, name: "Salchicha Tipo Viena (Corta)", image: "img/productos/producto-(11).png", family: 3, pesoNeto: "360 gr", unidadesCaja: "18 Paquetes", pesoBruto: "6,5 Kg aprox.", vidaUtil: "3 meses" },
+        { id: 14, name: "Salchicha Tipo Viena (Larga)", image: "img/productos/producto-(12).png", family: 3, pesoNeto: "800 gr", unidadesCaja: "8 Paquetes", pesoBruto: "6,4 Kg aprox.", vidaUtil: "3 meses" },
         
         // FAMILIA 4: MORTADELAS
         { id: 15, name: "Mortadela Especial 1Kg", image: "img/productos/producto-(4).png", family: 4, pesoNeto: "1 Kg", unidadesCaja: "24 Piezas", pesoBruto: "24 Kg aprox", vidaUtil: "6 meses" },
