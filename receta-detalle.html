@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Arichuna - Receta Detalle</title>
+  <link rel="icon" href="img/ico.ico" type="image/x-icon">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+
+  <script src="https://unpkg.com/phosphor-icons"></script>
+</head>
+<body class="bg-gray-50">
+  
+  <div id="navbar-container"></div>
+
+    <section id="hero-recetario" class="hero-section">
+      <div class="hero-content">
+          <h1 class="hero-title">Recetario</h1>
+      </div>
+  </section>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 mt-24">
+      
+      <div class="mb-8 animate-on-scroll animate-from-left">
+          <a href="recetario.html" class="inline-flex items-center text-gray-600 hover:text-red-700 transition-colors font-medium">
+              <i class="ph ph-arrow-left text-xl mr-2"></i>
+              Volver al Recetario
+          </a>
+      </div>
+
+      <div class="max-w-4xl mx-auto animate-on-scroll animate-from-left" style="transition-delay: 0.1s;">
+          <div class="recipe-frame">
+              <img id="receta-img-full" src="" alt="Cargando receta..." class="w-full h-auto">
+          </div>
+      </div>
+
+      <div id="error-msg" class="hidden text-center py-20 text-gray-500">
+          <i class="ph ph-warning-circle text-4xl mb-2 text-red-500"></i>
+          <p>No se pudo cargar la receta seleccionada.</p>
+          <a href="recetario.html" class="text-red-700 underline mt-2 block">Volver</a>
+      </div>
+
+  </main>
+
+  <div id="footer-container"></div>
+  
+  <script src="js/main.js"></script>
+  <script src="js/components.js"></script>
+
+  <script>
+      // 1. CARGA DE IMAGEN
+      document.addEventListener('DOMContentLoaded', () => {
+          const params = new URLSearchParams(window.location.search);
+          const recetaNombre = params.get('receta');
+          const imgElement = document.getElementById('receta-img-full');
+          const errorMsg = document.getElementById('error-msg');
+
+          if (recetaNombre) {
+              // Construir la ruta
+              const rutaImagen = `img/recetas/pasos/${recetaNombre}.jpg`;
+              
+              imgElement.src = rutaImagen;
+              imgElement.alt = `Receta de ${recetaNombre.replace('-', ' ')}`;
+
+              imgElement.onerror = function() {
+                  // Si falla la carga, ocultamos el marco y mostramos error
+                  imgElement.closest('.recipe-frame').style.display = 'none';
+                  errorMsg.classList.remove('hidden');
+              };
+          } else {
+              imgElement.closest('.recipe-frame').style.display = 'none';
+              errorMsg.classList.remove('hidden');
+          }
+      });
+
+      // 2. FORZAR ACTIVE EN NAVBAR (Solución al botón rojo)
+      // Escuchamos cuando el navbar se haya cargado
+      document.addEventListener('navbar-sticky-loaded', () => {
+          setTimeout(() => {
+              // Buscamos el enlace que apunta a 'recetario.html' en Desktop y Móvil
+              const recetarioLinks = document.querySelectorAll('[data-page="recetario.html"]');
+              
+              recetarioLinks.forEach(link => {
+                  // Aplicamos las clases de "activo" manualmente
+                  if (link.classList.contains('nav-item')) {
+                      // Desktop
+                      link.classList.add('nav-highlight'); 
+                  } else {
+                      // Móvil
+                      link.classList.remove('text-gray-900');
+                      link.classList.add('text-red-700');
+                  }
+              });
+          }, 50); // Pequeño delay para asegurar que components.js terminó su lógica inicial
+      });
+  </script>
+  
+</body>
+</html>
