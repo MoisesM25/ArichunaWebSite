@@ -774,6 +774,46 @@ transform: translate(0, 0);
 .animate-on-scroll.animate-from-right{transform:translateX(100px)}
 .animate-on-scroll.is-visible{opacity:1;transform:translate(0, 0)}
 
+/* ESTILOS ESPECÍFICOS PARA DETALLE DE RECETA */
+
+/* Marco "Postal Premium" */
+.recipe-frame {
+    background-color: #fff;
+    padding: 1rem; /* El espacio blanco alrededor de la foto */
+    border-radius: 1.5rem; /* Bordes redondeados externos */
+    
+    /* Sombra elegante y profunda (solo tonos de rojo Arichuna) */
+box-shadow: 
+    0 10px 15px -3px rgba(195, 0, 0, 0.15), /* Sombra principal más fuerte */
+    0 4px 6px -2px rgba(195, 0, 0, 0.10),  /* Sombra más cercana y sutil */
+    0 20px 25px -5px rgba(195, 0, 0, 0.20); /* Sombra de profundidad */
+        
+    position: relative;
+    border: 1px solid #f3f4f6; /* Borde gris muy sutil */
+}
+
+/* Elemento decorativo: Borde inferior de color marca */
+.recipe-frame::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 6px; /* Grosor de la línea decorativa */
+    background: linear-gradient(90deg, #c30000 0%, #fab32e 100%); /* Gradiente Rojo-Mostaza */
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+/* La imagen interna */
+.recipe-frame img {
+    border-radius: 1rem; /* Bordes redondeados internos */
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #e5e7eb; /* Borde fino alrededor de la imagen */
+}
 
 /* 12. CTA A RECETARIO (CON PARALLAX) */
 /* (Este bloque pertenece a la página de PRODUCTOS, pero lo mantenemos) */
